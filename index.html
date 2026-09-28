@@ -4,88 +4,110 @@
     <meta charset="UTF-8">
     <title>المنظومة الرقمية التفاعلية - مدرسة الحلفاوي</title>
     <style>
-        :root {
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-        }
         body {
             font-family: 'Cairo', Tahoma, sans-serif;
             background-color: #f9f9f9;
-            color: var(--text-dark);
+            color: #333; /* لون الخط العام للصفحة ككل */
             padding: 20px;
-            margin: 0;
         }
-        .card {
+        
+        .admin-panel {
             background: #fff;
             padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             margin-bottom: 20px;
-        }
-        .action-btn {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 9px 16px;
+            border: 2px dashed #007bff;
             border-radius: 8px;
-            cursor: pointer;
         }
-        .action-btn:hover { background: #0056b3; }
-        .btn-delete {
-            background: #dc3545;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 6px;
-            cursor: pointer;
+
+        /* باب المتابعة (القسم المستهدف لتغيير لون خطه فقط) */
+        .followup-section {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            color: #333; /* اللون الافتراضي لباب المتابعة */
         }
-        .btn-delete:hover { background: #b02a37; }
-        input, select {
-            font-family: 'Cairo', Tahoma, sans-serif;
+
+        table {
+            width: 100%;
+            text-align: right;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin-top: 15px;
         }
-        table th, table td {
+
+        th, td {
             padding: 10px;
             border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .btn-save { background: #007bff; color: white; }
+        .btn-delete { background: #dc3545; color: white; padding: 4px 10px; font-size: 0.85rem; }
+        .btn-style { background: #28a745; color: white; margin-top: 10px; }
+
+        .input-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
         }
     </style>
 </head>
 <body>
 
-    <h1 style="text-align: center; margin-bottom: 20px;">المنظومة الرقمية التفاعلية - مدرسة الحلفاوي</h1>
-    <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 0.95rem;">مشروع تجريبي للمشاركة والتقييم والمعاضدة في انتظار العرض على الدائرة التفقدية والدارة</p>
+    <h1>المنظومة الرقمية التفاعلية - مدرسة الحلفاوي</h1>
 
-    <!-- باب المتابعة والتقييم -->
-    <div id="tab-eval" class="card" style="max-width: 1000px; margin: 0 auto;">
+    <!-- لوحة تحكم المسؤول (Admin) -->
+    <div class="admin-panel">
+        <h3>لوحة تحكم المسؤول (Admin)</h3>
         
-        <!-- لوحة التحكم المصغرة لتغيير لون خط باب المتابعة فقط -->
-        <div style="background: #e2e8f0; padding: 12px; border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
-            <span>🎨 تخصيص لون خط باب المتابعة فقط:</span>
-            <div>
-                <input type="color" id="evalFontColorPicker" value="#1e293b" style="vertical-align: middle; margin-left: 5px; height: 32px; width: 45px; border: none; cursor: pointer;">
-                <button class="action-btn" onclick="changeEvalColor()" style="padding: 6px 12px; font-size: 0.85rem;">تطبيق اللون</button>
-            </div>
+        <!-- تغيير لون الخط في باب المتابعة فقط -->
+        <div>
+            <label>اختر لون خط "باب المتابعة" فقط:</label>
+            <input type="color" id="fontColorPicker" value="#333333" style="vertical-align: middle; margin-left: 10px;">
+            <button type="button" onclick="changeFollowupColor()" class="btn-style">تطبيق اللون على باب المتابعة</button>
         </div>
+    </div>
 
-        <h3 id="eTitle">👥 باب المتابعة والتقييم المستمر للتلاميذ</h3>
-        <p id="eSub" style="font-size: 0.9rem; margin: 10px 0; color: var(--text-light);">سجل بيانات التلاميذ، حدد مستواهم، وتابع تقييماتهم (مع1 إلى مع4) والمعدل الآلي:</p>
+    <!-- باب المتابعة وتقييم التعلمات (قائمة التلاميذ) -->
+    <div class="followup-section" id="followupSection">
+        <h3>باب المتابعة وتقييم التعلمات (قائمة التلاميذ)</h3>
+        <p style="font-size: 0.9rem; color: #64748b;">سجل بيانات التلاميذ، حدد مستواهم، وتابع تقييماتهم (مع1 إلى مع4) والمعدل الآلي:</p>
         
-        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; background: #f8fafc; padding: 15px; border-radius: 12px;">
-            <input type="text" id="st-name" placeholder="اسم التلميذ الثلاثي" style="padding: 9px; border-radius: 8px; flex: 2; min-width: 180px; border: 1px solid #cbd5e1;">
-            <select id="st-level" style="padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;">
-                <option value="السنة الثالثة">السنة الثالثة ابتدائي</option>
-                <option value="السنة الرابعة">السنة الرابعة ابتدائي</option>
+        <!-- حقول إدخال بيانات التلميذ والتقييمات -->
+        <div class="input-group">
+            <input type="text" id="st-name" placeholder="اسم التلميذ الثلاثي" style="padding: 8px; border-radius: 6px; flex: 2; min-width: 160px; border: 1px solid #cbd5e1;" required>
+            <select id="st-level" style="padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1;">
+                <option value="السنة الثالثة">السنة الثالثة</option>
+                <option value="السنة الرابعة">السنة الرابعة</option>
             </select>
-            <input type="number" id="st-m1" placeholder="مع1" style="width: 65px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20" step="0.5">
-            <input type="number" id="st-m2" placeholder="مع2" style="width: 65px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20" step="0.5">
-            <input type="number" id="st-m3" placeholder="مع3" style="width: 65px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20" step="0.5">
-            <input type="number" id="st-m4" placeholder="مع4" style="width: 65px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20" step="0.5">
-            <button class="action-btn" onclick="addStudentEval()">تسجيل وتقييم</button>
+            <input type="number" id="st-m1" placeholder="مع1" style="width: 60px; padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1;" min="0" max="20" step="0.5">
+            <input type="number" id="st-m2" placeholder="مع2" style="width: 60px; padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1;" min="0" max="20" step="0.5">
+            <input type="number" id="st-m3" placeholder="مع3" style="width: 60px; padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1;" min="0" max="20" step="0.5">
+            <input type="number" id="st-m4" placeholder="مع4" style="width: 60px; padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1;" min="0" max="20" step="0.5">
+            <button type="button" onclick="saveStudentData()" class="btn-save">تسجيل وتقييم</button>
         </div>
 
-        <table style="width: 100%; text-align: right; border-collapse: collapse; font-size: 0.9rem;">
+        <!-- جدول عرض التلاميذ -->
+        <table>
             <thead>
-                <tr style="background: #e2e8f0; color: var(--text-dark);">
-                    <th style="padding: 10px;">اسم التلميذ</th>
+                <tr>
+                    <th>اسم التلميذ</th>
                     <th>المستوى</th>
                     <th>مع1</th>
                     <th>مع2</th>
@@ -96,21 +118,21 @@
                     <th>إجراءات</th>
                 </tr>
             </thead>
-            <tbody id="evalTableBody"></tbody>
+            <tbody id="gradList"></tbody>
         </table>
     </div>
 
     <script>
-        // دالة إضافة تلميذ وحساب المعدل آلياً
-        function addStudentEval() {
+        // دالة حفظ تلميذ جديد مع حساب المعدل آلياً
+        function saveStudentData() {
             let name = document.getElementById('st-name').value.trim();
             let level = document.getElementById('st-level').value;
             let m1 = parseFloat(document.getElementById('st-m1').value) || 0;
             let m2 = parseFloat(document.getElementById('st-m2').value) || 0;
             let m3 = parseFloat(document.getElementById('st-m3').value) || 0;
             let m4 = parseFloat(document.getElementById('st-m4').value) || 0;
-
-            if (!name) {
+            
+            if(!name) {
                 alert('الرجاء إدخال اسم التلميذ');
                 return;
             }
@@ -118,65 +140,65 @@
             let avg = ((m1 + m2 + m3 + m4) / 4).toFixed(2);
             let status = avg >= 10 ? 'متلئم / موفق' : 'يحتاج دعم';
 
-            let students = JSON.parse(localStorage.getItem('evalStudents') || '[]');
-            students.push({ name, level, m1, m2, m3, m4, avg, status });
-            localStorage.setItem('evalStudents', JSON.stringify(students));
-
+            let grads = JSON.parse(localStorage.getItem('grads') || '[]');
+            grads.push({name, level, m1, m2, m3, m4, avg, status});
+            localStorage.setItem('grads', JSON.stringify(grads));
+            
+            loadGrads();
+            
+            // تفريغ الحقول بعد التسجيل
             document.getElementById('st-name').value = '';
             document.getElementById('st-m1').value = '';
             document.getElementById('st-m2').value = '';
             document.getElementById('st-m3').value = '';
             document.getElementById('st-m4').value = '';
-
-            loadEvalStudents();
         }
 
         // دالة حذف تلميذ
-        function deleteStudentEval(index) {
-            let students = JSON.parse(localStorage.getItem('evalStudents') || '[]');
-            students.splice(index, 1);
-            localStorage.setItem('evalStudents', JSON.stringify(students));
-            loadEvalStudents();
+        function deleteStudent(index) {
+            let grads = JSON.parse(localStorage.getItem('grads') || '[]');
+            grads.splice(index, 1);
+            localStorage.setItem('grads', JSON.stringify(grads));
+            loadGrads();
         }
 
         // دالة عرض التلاميذ في الجدول
-        function loadEvalStudents() {
-            let students = JSON.parse(localStorage.getItem('evalStudents') || '[]');
-            let tbody = document.getElementById('evalTableBody');
-            tbody.innerHTML = '';
-
-            students.forEach((s, index) => {
+        function loadGrads() {
+            let grads = JSON.parse(localStorage.getItem('grads') || '[]');
+            let list = document.getElementById('gradList');
+            list.innerHTML = '';
+            
+            grads.forEach((g, index) => {
                 let tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td style="padding: 10px;">${s.name}</td>
-                    <td>${s.level}</td>
-                    <td>${s.m1}</td>
-                    <td>${s.m2}</td>
-                    <td>${s.m3}</td>
-                    <td>${s.m4}</td>
-                    <td><strong>${s.avg}</strong></td>
-                    <td><span style="padding: 3px 8px; border-radius: 4px; background: ${s.avg >= 10 ? '#d1e7dd' : '#f8d7da'}; color: ${s.avg >= 10 ? '#0f5132' : '#842029'};">${s.status}</span></td>
-                    <td><button class="btn-delete" onclick="deleteStudentEval(${index})">حذف</button></td>
+                    <td><strong>${g.name}</strong></td>
+                    <td>${g.level}</td>
+                    <td>${g.m1}</td>
+                    <td>${g.m2}</td>
+                    <td>${g.m3}</td>
+                    <td>${g.m4}</td>
+                    <td><strong>${g.avg}</strong></td>
+                    <td><span style="padding: 3px 8px; border-radius: 4px; background: ${g.avg >= 10 ? '#d1e7dd' : '#f8d7da'}; color: ${g.avg >= 10 ? '#0f5132' : '#842029'};">${g.status}</span></td>
+                    <td><button class="btn-delete" onclick="deleteStudent(${index})">حذف</button></td>
                 `;
-                tbody.appendChild(tr);
+                list.appendChild(tr);
             });
         }
 
-        // دالة تغيير لون خط باب المتابعة فقط
-        function changeEvalColor() {
-            let color = document.getElementById('evalFontColorPicker').value;
-            let tabEval = document.getElementById('tab-eval');
-            tabEval.style.color = color;
-            localStorage.setItem('evalFontColor', color);
+        // تغيير لون خط باب المتابعة فقط وحفظه
+        function changeFollowupColor() {
+            let color = document.getElementById('fontColorPicker').value;
+            document.getElementById('followupSection').style.color = color;
+            localStorage.setItem('followupFontColor', color);
         }
 
-        // تحميل البيانات واللون المحفوظ عند فتح الصفحة
         window.onload = function() {
-            loadEvalStudents();
-            let savedColor = localStorage.getItem('evalFontColor');
-            if (savedColor) {
-                document.getElementById('tab-eval').style.color = savedColor;
-                document.getElementById('evalFontColorPicker').value = savedColor;
+            loadGrads();
+            // استرجاع لون باب المتابعة المحفوظ مسبقاً إن وجد
+            let savedColor = localStorage.getItem('followupFontColor');
+            if(savedColor) {
+                document.getElementById('followupSection').style.color = savedColor;
+                document.getElementById('fontColorPicker').value = savedColor;
             }
         };
     </script>
