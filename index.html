@@ -852,6 +852,54 @@
         const text = document.getElementById('tts-text').value || "مرحباً بكم في المنظومة الرقمية للمدرسة الابتدائية الحلفاوي بمدنين تحت إشراف المعلم جمال الجويلي";
         window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
     }
-</script>
-</body>
+</script> 
+<!-- قسم لوحة تحكم المسؤول (Admin) -->
+<div style="background: #f4f4f4; padding: 20px; margin: 20px 0; border: 2px dashed #007bff;">
+    <h3>لوحة تحكم المسؤول (Admin) - معطيات التخرج</h3>
+    <form id="gradForm">
+        <label>اسم الخريج:</label><br>
+        <input type="text" id="gradName" required style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+        
+        <label>سنة التخرج / التقدير:</label><br>
+        <input type="text" id="gradDetails" required style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+        
+        <button type="button" onclick="saveGradData()" style="background: #007bff; color: white; padding: 10px 20px; border: none; cursor: pointer;">حفظ ونشر المعطيات</button>
+    </form>
+</div>
+
+<!-- قائمة عرض معطيات التخرج للجميع -->
+<div style="background: #fff; padding: 20px; border: 1px solid #ddd;">
+    <h3>قائمة الخريجين المعتمدة</h3>
+    <ul id="gradList"></ul>
+</div>
+
+<script>
+    // حفظ البيانات في ذاكرة المتصفح مؤقتاً
+    function saveGradData() {
+        let name = document.getElementById('gradName').value;
+        let details = document.getElementById('gradDetails').value;
+        
+        if(name && details) {
+            let grads = JSON.parse(localStorage.getItem('grads') || '[]');
+            grads.push({name, details});
+            localStorage.setItem('grads', JSON.stringify(grads));
+            loadGrads();
+            alert('تمت إضافة معطيات التخرج بنجاح!');
+            document.getElementById('gradForm').reset();
+        }
+    }
+
+    // عرض البيانات للزوار
+    function loadGrads() {
+        let grads = JSON.parse(localStorage.getItem('grads') || '[]');
+        let list = document.getElementById('gradList');
+        list.innerHTML = '';
+        grads.forEach(g => {
+            let li = document.createElement('li');
+            li.textContent = g.name + ' - ' + g.details;
+            list.appendChild(li);
+        });
+    }
+    window.onload = loadGrads;
+</script> </body>
 </html>
