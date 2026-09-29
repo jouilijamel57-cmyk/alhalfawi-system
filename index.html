@@ -6,8 +6,8 @@
     <title id="pageTitle">المنظومة الرقمية التفاعلية الذكية - مدرسة الحلفاوي بمدنين</title>
     
     <!-- تحسين محركات البحث SEO Meta Tags -->
-    <meta name="description" content="المنظومة الرقمية التفاعلية الذكية للمدرسة الابتدائية الحلفاوي بمدنين تحت إشراف المعلم جمال الجويلي. تخطيط ذكي، مشاريع مبتكرة، وتوظيف للذكاء الاصطناعي[cite: 2].">
-    <meta name="keywords" content="مدرسة الحلفاوي مدنين, المعلم جمال الجويلي, المنظومة الرقمية, التعليم الابتدائي تونس, مشاريع تفاعلية, الذكاء الاصطناعي في التعليم[cite: 2]">
+    <meta name="description" content="المنظومة الرقمية التفاعلية الذكية للمدرسة الابتدائية الحلفاوي بمدنين تحت إشراف المعلم جمال الجويلي. تخطيط ذكي، مشاريع مبتكرة، وتوظيف للذكاء الاصطناعي.">
+    <meta name="keywords" content="مدرسة الحلفاوي مدنين, المعلم جمال الجويلي, المنظومة الرقمية, التعليم الابتدائي تونس, مشاريع تفاعلية, الذكاء الاصطناعي في التعليم">
     <meta name="author" content="Jamel Jouili">
 
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -194,18 +194,17 @@
         }
         .action-btn:hover { background: var(--primary); }
 
-        .btn-delete {
-            background: #dc2626;
-            color: white;
+        .delete-btn {
+            background: #ef4444;
+            color: #fff;
             border: none;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 6px;
             cursor: pointer;
-            font-weight: bold;
             font-size: 0.8rem;
-            transition: 0.2s;
+            font-weight: bold;
         }
-        .btn-delete:hover { background: #b91c1c; }
+        .delete-btn:hover { background: #dc2626; }
 
         .simulator-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         @media(max-width: 850px) { .simulator-grid { grid-template-columns: 1fr; } }
@@ -223,12 +222,7 @@
         }
         .doc-header { text-align: center; border-bottom: 2px solid var(--primary); padding-bottom: 15px; margin-bottom: 20px; }
         
-        .card {
-            background: #ffffff;
-            border-radius: 18px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-        }
+        .card { background: #ffffff; border-radius: 18px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -259,12 +253,12 @@
         <div class="card" style="max-width: 950px; margin: 0 auto; border-right: 6px solid var(--primary);">
             <h2 id="iTitle" style="color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; font-size: 1.5rem;">أهداف وغايات المنظومة الرقمية التفاعلية</h2>
             <p id="iDesc1" style="line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem; color: #1e293b; background: #f8fafc; padding: 12px; border-radius: 8px;">
-                تهدف المنظومة إلى إحداث نقلة نوعية في الفعل التربوي بالمدرسة الابتدائية الحلفاوي بمدنين عبر دمج التكنولوجيات الحديثة والذكاء الاصطناعي في الممارسات البيداغوجية اليومية للفصل.[cite: 2]
+                تهدف المنظومة إلى إحداث نقلة نوعية في الفعل التربوي بالمدرسة الابتدائية الحلفاوي بمدنين عبر دمج التكنولوجيات الحديثة والذكاء الاصطناعي في الممارسات البيداغوجية اليومية للفصل.
             </p>
             <h3 id="iSub" style="color: var(--accent); margin: 20px 0 10px 0; font-size: 1.2rem;">الأهداف الغائية (إلى أين نريد الوصول بتلاميذنا؟):</h3>
-            <ul style="list-style: none; font-size: 0.98rem; color: #0f172a; line-height: 1.8;">
+            <ul class="act-list" id="iList" style="list-style: none; font-size: 0.98rem; color: #0f172a; line-height: 1.8;">
                 <li id="li1" style="background: #f1f5f9; padding: 10px; border-radius: 8px; margin-bottom: 8px;">• <strong>بناء الاستقلالية والتعلم الذاتي:</strong> تمكين المتعلم من استكشاف المفاهيم وبناء المعرفة عبر الألواح الرقمية التفاعلية.</li>
-                <li id="li2" style="background: #f1f5f9; padding: 10px; border-radius: 8px; margin-bottom: 8px;">• <strong>الابتكار وتوظيف الذكاء الاصطناعي:</strong> إنجاز مشاريع رقمية ومجسمات تفاعلية مستوحاة من محاكيات الذكاء الاصطناعي والتواصل الحديث.[cite: 2]</li>
+                <li id="li2" style="background: #f1f5f9; padding: 10px; border-radius: 8px; margin-bottom: 8px;">• <strong>الابتكار وتوظيف الذكاء الاصطناعي:</strong> إنجاز مشاريع رقمية ومجسمات تفاعلية مستوحاة من محاكيات الذكاء الاصطناعي والتواصل الحديث.</li>
                 <li id="li3" style="background: #f1f5f9; padding: 10px; border-radius: 8px; margin-bottom: 8px;">• <strong>التمكن اللغوي والمنهجي:</strong> السيطرة على كفايات التواصل الشفوي، القراءة السردية، قواعد اللغة، والإنتاج الكتابي بدقة تامة.</li>
                 <li id="li4" style="background: #f1f5f9; padding: 10px; border-radius: 8px; margin-bottom: 8px;">• <strong>التقييم التشاركي والمتابعة المستمرة:</strong> توفير فضاء لرصد تقدم التلاميذ ودعم التعثرات بصفة آلية وفورية.</li>
             </ul>
@@ -285,41 +279,42 @@
 
     <!-- باب المتابعة والتقييم -->
     <div id="tab-eval" class="tab-content">
-        <div class="card" style="max-width: 1050px; margin: 0 auto;">
-            <h3 id="eTitle" style="color: var(--primary); margin-bottom: 5px;">👥 باب المتابعة والتقييم المستمر للتلاميذ</h3>
-            <p id="eSub" style="font-size: 0.9rem; margin: 10px 0 20px 0; color: var(--text-light);">سجل بيانات التلاميذ، حدد مستواهم، وتابع تقييماتهم (مع1 إلى مع4) والمعدل الآلي:</p>
+        <div class="card" style="max-width: 1000px; margin: 0 auto;">
+            <h3 id="eTitle" style="color: var(--primary); margin-bottom: 8px;">👥 باب المتابعة والتقييم المستمر للتلاميذ</h3>
+            <p id="eSub" style="font-size: 0.9rem; margin: 10px 0; color: var(--text-light);">اختر اسم التلميذ من القائمة المنسدلة للتقييم، أو أضف اسماً جديداً للسجل:</p>
             
-            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; background: #f8fafc; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0;">
-                <input type="text" id="st-name" placeholder="اسم التلميذ الثلاثي" style="padding: 10px; border-radius: 8px; flex: 2; min-width: 180px; border: 1px solid #cbd5e1; font-size: 0.95rem;">
-                <select id="st-level" style="padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 0.95rem;">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; background: #f8fafc; padding: 15px; border-radius: 12px; align-items: center;">
+                <select id="st-name-select" style="padding: 10px; border-radius: 8px; flex: 2; min-width: 180px; border: 1px solid #cbd5e1;">
+                    <option value="">-- اختر اسم التلميذ من القائمة --</option>
+                </select>
+                <input type="text" id="st-new-name" placeholder="أو أضف اسماً جديداً..." style="padding: 9px; border-radius: 8px; flex: 1.5; min-width: 150px; border: 1px solid #cbd5e1;">
+                <select id="st-level" style="padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;">
                     <option value="السنة الثالثة">السنة الثالثة ابتدائي</option>
                     <option value="السنة الرابعة">السنة الرابعة ابتدائي</option>
                 </select>
-                <input type="number" id="st-m1" placeholder="مع1" style="width: 70px; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 0.95rem;" min="0" max="20" step="0.5">
-                <input type="number" id="st-m2" placeholder="مع2" style="width: 70px; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 0.95rem;" min="0" max="20" step="0.5">
-                <input type="number" id="st-m3" placeholder="مع3" style="width: 70px; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 0.95rem;" min="0" max="20" step="0.5">
-                <input type="number" id="st-m4" placeholder="مع4" style="width: 70px; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 0.95rem;" min="0" max="20" step="0.5">
-                <button class="action-btn" onclick="addStudentEval()" style="padding: 10px 20px;">تسجيل وتقييم</button>
+                <input type="number" id="st-m1" placeholder="مع1" style="width: 60px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20">
+                <input type="number" id="st-m2" placeholder="مع2" style="width: 60px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20">
+                <input type="number" id="st-m3" placeholder="مع3" style="width: 60px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20">
+                <input type="number" id="st-m4" placeholder="مع4" style="width: 60px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20">
+                <button class="action-btn" onclick="addStudentEval()">تسجيل وتحديث</button>
             </div>
 
-            <div style="overflow-x: auto;">
-                <table style="width: 100%; text-align: right; border-collapse: collapse; font-size: 0.95rem; background: #ffffff;">
-                    <thead>
-                        <tr style="background: #1e3a8a; color: #ffffff;">
-                            <th style="padding: 12px; border-top-right-radius: 8px;">اسم التلميذ</th>
-                            <th style="padding: 12px;">المستوى</th>
-                            <th style="padding: 12px;">مع1</th>
-                            <th style="padding: 12px;">مع2</th>
-                            <th style="padding: 12px;">مع3</th>
-                            <th style="padding: 12px;">مع4</th>
-                            <th style="padding: 12px;">المعدل العام</th>
-                            <th style="padding: 12px;">الحالة التقديرية</th>
-                            <th style="padding: 12px; border-top-left-radius: 8px; text-align: center;">إجراءات</th>
-                        </tr>
-                    </thead>
-                    <tbody id="evalTableBody"></tbody>
-                </table>
-            </div>
+            <table style="width: 100%; text-align: right; border-collapse: collapse; font-size: 0.9rem;">
+                <thead>
+                    <tr style="background: #e2e8f0; color: var(--text-dark);">
+                        <th style="padding: 10px;">اسم التلميذ</th>
+                        <th>المستوى</th>
+                        <th>مع1</th>
+                        <th>مع2</th>
+                        <th>مع3</th>
+                        <th>مع4</th>
+                        <th>المعدل العام</th>
+                        <th>الحالة التقديرية</th>
+                        <th>إجراء</th>
+                    </tr>
+                </thead>
+                <tbody id="evalTableBody"></tbody>
+            </table>
         </div>
     </div>
 
@@ -329,13 +324,13 @@
             <div class="card">
                 <h3>🎨 ورشة الرسومات والتصاميم الرقمية الذكية</h3>
                 <label style="font-size:0.9rem; font-weight:bold; display:block; margin: 10px 0 5px;">اختر موضوع الورشة بالفصل:</label>
-                <select id="draw-topic" style="width:100%; padding: 10px; border-radius: 8px; margin-bottom: 12px; border: 1px solid #cbd5e1;">
+                <select id="draw-topic" style="width:100%; padding: 10px; border-radius: 8px; margin-bottom: 12px;">
                     <option value="1">مشروع البيئة الذكية والاستدامة</option>
                     <option value="2">القصة التفاعلية ثلاثية الأبعاد</option>
                     <option value="3">المجسم الرقمي لحساب الحاضر</option>
                 </select>
                 <button class="action-btn" onclick="generateDrawing()">توليد الرسم التوضيحي بالذكاء الاصطناعي</button>
-                <button class="action-btn" style="background:var(--success); margin-left: 5px;" onclick="downloadCanvas()">تنزيل الصورة PNG</button>
+                <button class="action-btn" style="background:var(--success);" onclick="downloadCanvas()">تنزيل الصورة PNG</button>
             </div>
             <div><canvas id="digitalCanvas"></canvas></div>
         </div>
@@ -345,7 +340,7 @@
     <div id="tab-audio" class="tab-content">
         <div class="card" style="max-width: 700px; margin: 0 auto;">
             <h3>🔊 محاكي النطق والتدريب الشفهي بالفصحى</h3>
-            <textarea id="tts-text" style="width: 100%; height: 120px; padding: 12px; border-radius: 10px; margin: 12px 0; border: 1px solid #cbd5e1; font-size: 1rem;" placeholder="أدخل النص العربي للنطق والتدريب بالفصل..."></textarea>
+            <textarea id="tts-text" style="width: 100%; height: 120px; padding: 12px; border-radius: 10px; margin: 12px 0; border: 1px solid #cbd5e1;" placeholder="أدخل النص العربي للنطق والتدريب بالفصل..."></textarea>
             <div style="display:flex; gap:10px;">
                 <button class="action-btn" onclick="speakText()">قراءة النص</button>
                 <button class="action-btn" style="background:#dc2626;" onclick="window.speechSynthesis.cancel()">إيقاف</button>
@@ -368,7 +363,7 @@
             <h3 id="reqSubject" style="text-align: center; color: var(--primary);">الموضوع: مطلب توفير أجهزة تفاعلية وألواح رقمية لدعم منصة الذكاء الاصطناعي</h3>
             <br>
             <p id="reqBody1">سيدي المندوب الجهوي،</p>
-            <p id="reqBody2">في إطار تفعيل المنظومة الرقمية التفاعلية الذكية بالمدرسة الابتدائية الحلفاوي بمدنين[cite: 2]، وحرصاً منا على تمكين التلاميذ من تنفيذ المشاريع الابتكارية المعتمدة على أدوات الاتصال الحديثة والذكاء الاصطناعي[cite: 2]، يبرز الاحتياج الماسة والملحة لتجهيز الأقسام بألواح رقمية وسبورة تفاعلية حديثة لضمان جودة التعلمات.</p>
+            <p id="reqBody2">في إطار تفعيل المنظومة الرقمية التفاعلية الذكية بالمدرسة الابتدائية الحلفاوي بمدنين، وحرصاً منا على تمكين التلاميذ من تنفيذ المشاريع الابتكارية المعتمدة على أدوات الاتصال الحديثة والذكاء الاصطناعي، يبرز الاحتياج الماسة والملحة لتجهيز الأقسام بألواح رقمية وسبورة تفاعلية حديثة لضمان جودة التعلمات.</p>
             <br>
             <p style="text-align: left;"><strong id="reqSignLabel">إمضاء المعلم:</strong> <span id="teacherNameSign">جمال الجويلي</span></p>
             <br>
@@ -388,12 +383,12 @@
         <p id="modalTools" style="background: #f1f5f9; padding: 12px; border-radius: 8px; margin: 8px 0; font-size: 0.9rem; line-height: 1.6;"></p>
         
         <h4 style="margin-top: 15px; color: var(--text-dark);" id="lblSteps">📈 مراحل الإنجاز المنهجي والتطبيقي (جذاذة موسعة):</h4>
-        <ul id="modalSteps" style="margin: 8px 0; padding-right: 20px; font-size: 0.92rem; line-height: 1.7;"></ul>
+        <ul id="modalSteps" class="act-list" style="margin: 8px 0; font-size: 0.92rem; line-height: 1.7; list-style: none;"></ul>
         
         <h4 style="margin-top: 15px; color: var(--text-dark);" id="lblPedagogy">🎯 الأبعاد البيداغوجية والمنتوج المنتظر:</h4>
         <p id="modalPedagogy" style="background: #f0fdf4; padding: 12px; border-radius: 8px; margin: 8px 0; font-size: 0.9rem; color: #166534; line-height: 1.6;"></p>
 
-        <div class="ai-project-box" style="margin-top: 15px;" id="modalAi"></div>
+        <div class="ai-box" style="margin-top: 15px;" id="modalAi"></div>
     </div>
 </div>
 
@@ -537,7 +532,7 @@
         },
         {
             id: 2, title: "الوحدة 2: التضامن والمواطنة", time: "3 أسابيع + إدماج", desc: "إنشاء وتأثيث مكتبة القسم، الترابط الأسري والمجتمعي.",
-            features: ["💬 سرد حكايات تضامنية", "📖 قراءة نص البنية السردية المعقدة", "⚙️ المفعول به بأنواعه (مفردة ومركباً)"],
+            features: ["💬 سرد حكايات تضامنية", "📖 قراءة نص البنية السردية المعقدة", "⚙️️ المفعول به بأنواعه (مفردة ومركباً)"],
             project: "المكتبة الرقمية التشاركية الذكية (Smart Digital Library)",
             tools: "قاعدة بيانات مصغرة للكتب، باركود (QR Code) لتصنيف الكتب، ألواح.",
             steps: [
@@ -565,7 +560,7 @@
         },
         {
             id: 4, title: "الوحدة 4: الصحة والرفاه", time: "3 أسابيع + إدماج", desc: "التغذية المتوازنة، الوقاية من الأمراض، والرعاية الصحية الأسرية.",
-            features: ["💬 إدارة حوار طبي صحي", "📖 تحليل بنية النص السردي", "⚙️ الأفعال الدالة على القول في درج السرد"],
+            features: ["💬 إدارة حوار طبي صحي", "📖 تحليل بنية النص السردي", "⚙ الأفعال الدالة على القول في درج السرد"],
             project: "المختبر الطبي الرقمي التفاعلي (Interactive Medical Lab)",
             tools: "تطبيق استقصاء صحي، لوحات تفاعلية، بطاقة متابعة صحية، مسرح القسم.",
             steps: [
@@ -664,7 +659,7 @@
         document.getElementById('modalTitle').innerText = u.title + " - تفاصيل المشروع الموسعة";
         document.getElementById('modalGoal').innerText = "🎯 الهدف البيداغوجي: " + u.desc;
         document.getElementById('modalTools').innerText = u.tools;
-        document.getElementById('modalSteps').innerHTML = u.steps.map(s => `<li style="margin-bottom:6px;">• ${s}</li>`).join('');
+        document.getElementById('modalSteps').innerHTML = u.steps.map(s => `<li>• ${s}</li>`).join('');
         document.getElementById('modalPedagogy').innerText = u.pedagogy;
         document.getElementById('modalAi').innerHTML = `<strong>🤖 توظيف الذكاء الاصطناعي:</strong> ${u.ai}`;
         
@@ -675,82 +670,94 @@
         document.getElementById('projectModal').style.display = 'none';
     }
 
-    // إدارة التلاميذ بذاكرة محلية localStorage مع دعم الحذف وتوضيح الخطوط
-    let studentsData = JSON.parse(localStorage.getItem('alhalfawi_students')) || [
+    let studentsData = [
         {name: "أحمد بن محمد الجلاصي", level: "السنة الثالثة", m1: 15, m2: 14, m3: 16, m4: 15},
-        {name: "مريم بنت علي الطرابلسي", level: "السنة الرابعة", m1: 17, m2: 16, m3: 18, m4: 17}
+        {name: "مريم بنت علي الطرابلسي", level: "السنة الرابعة", m1: 17, m2: 16, m3: 18, m4: 17},
+        {name: "يوسف بن صالح العبيدي", level: "السنة الثالثة", m1: 13, m2: 12, m3: 14, m4: 13},
+        {name: "فاطمة بنت الهادي بن عمار", level: "السنة الرابعة", m1: 18, m2: 17, m3: 19, m4: 18}
     ];
+
+    function updateStudentDropdown() {
+        const select = document.getElementById('st-name-select');
+        select.innerHTML = '<option value="">-- اختر اسم التلميذ من القائمة --</option>' + 
+            studentsData.map(st => `<option value="${st.name}">${st.name} (${st.level})</option>`).join('');
+    }
+
+    // ربط اختيار القائمة المنسدلة بتعبئة البيانات تلقائياً للتعديل السريع
+    document.getElementById('st-name-select').addEventListener('change', function() {
+        const selectedName = this.value;
+        if(!selectedName) return;
+        const st = studentsData.find(s => s.name === selectedName);
+        if(st) {
+            document.getElementById('st-new-name').value = st.name;
+            document.getElementById('st-level').value = st.level;
+            document.getElementById('st-m1').value = st.m1;
+            document.getElementById('st-m2').value = st.m2;
+            document.getElementById('st-m3').value = st.m3;
+            document.getElementById('st-m4').value = st.m4;
+        }
+    });
 
     function renderEvalTable() {
         const tbody = document.getElementById('evalTableBody');
-        if(studentsData.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; color: #64748b; padding: 25px; font-weight: bold;">لا توجد سجلات تلاميذ حالياً. استخدم نموذج التسجيل بالأعلى لإضافة تلميذ جديد.</td></tr>`;
-            return;
-        }
-
         tbody.innerHTML = studentsData.map((st, index) => {
-            const m1 = parseFloat(st.m1) || 0;
-            const m2 = parseFloat(st.m2) || 0;
-            const m3 = parseFloat(st.m3) || 0;
-            const m4 = parseFloat(st.m4) || 0;
-            const avg = ((m1 + m2 + m3 + m4) / 4).toFixed(2);
-            
+            const avg = ((st.m1 + st.m2 + st.m3 + st.m4) / 4).toFixed(2);
             let status = avg >= 14 ? 'ممتاز (متملّك)' : (avg >= 10 ? 'متوسط (في طور التملك)' : 'يحتاج دعم وعلاج');
             let color = avg >= 14 ? '#059669' : (avg >= 10 ? '#d97706' : '#dc2626');
-            let rowBg = index % 2 === 0 ? '#ffffff' : '#f8fafc'; // تباين ألوان الأسطر لضمان القراءة بوضوح تام
-
             return `
-                <tr style="border-bottom: 1px solid #e2e8f0; background: ${rowBg}; color: #0f172a; font-weight: 500;">
-                    <td style="padding: 12px; color: #1e293b;"><strong>${st.name}</strong></td>
-                    <td style="padding: 12px; color: #334155;">${st.level}</td>
-                    <td style="padding: 12px; color: #334155;">${st.m1}</td>
-                    <td style="padding: 12px; color: #334155;">${st.m2}</td>
-                    <td style="padding: 12px; color: #334155;">${st.m3}</td>
-                    <td style="padding: 12px; color: #334155;">${st.m4}</td>
-                    <td style="padding: 12px;"><strong style="color:#1e3a8a; font-size: 1rem;">${avg}</strong></td>
-                    <td style="padding: 12px;"><span style="color: ${color}; font-weight: 700; background: ${color}15; padding: 4px 8px; border-radius: 6px;">${status}</span></td>
-                    <td style="padding: 12px; text-align: center;">
-                        <button class="btn-delete" onclick="deleteStudent(${index})">حذف</button>
-                    </td>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td style="padding: 10px;"><strong>${st.name}</strong></td>
+                    <td>${st.level}</td>
+                    <td>${st.m1}</td>
+                    <td>${st.m2}</td>
+                    <td>${st.m3}</td>
+                    <td>${st.m4}</td>
+                    <td><strong style="color:var(--primary);">${avg}</strong></td>
+                    <td><span style="color: ${color}; font-weight: bold;">${status}</span></td>
+                    <td><button class="delete-btn" onclick="deleteStudent(${index})">حذف</button></td>
                 </tr>
             `;
         }).join('');
+        updateStudentDropdown();
     }
+    renderEvalTable();
 
     function addStudentEval() {
-        const name = document.getElementById('st-name').value.trim();
+        const selectName = document.getElementById('st-name-select').value;
+        const customName = document.getElementById('st-new-name').value.trim();
+        const name = customName || selectName;
         const level = document.getElementById('st-level').value;
         const m1 = parseFloat(document.getElementById('st-m1').value) || 0;
         const m2 = parseFloat(document.getElementById('st-m2').value) || 0;
         const m3 = parseFloat(document.getElementById('st-m3').value) || 0;
         const m4 = parseFloat(document.getElementById('st-m4').value) || 0;
 
-        if(!name) {
-            alert('يرجى إدخال اسم التلميذ الثلاثي');
-            return;
-        }
+        if(!name) return alert('يرجى اختيار اسم التلميذ أو إدخال اسم جديد');
         
-        studentsData.push({name, level, m1, m2, m3, m4});
-        localStorage.setItem('alhalfawi_students', JSON.stringify(studentsData));
+        // التحقق إن كان التلميذ موجوداً لتحديثه أو إضافته كجديد
+        const existingIndex = studentsData.findIndex(s => s.name === name);
+        if(existingIndex >= 0) {
+            studentsData[existingIndex] = {name, level, m1, m2, m3, m4};
+        } else {
+            studentsData.push({name, level, m1, m2, m3, m4});
+        }
+
         renderEvalTable();
 
-        document.getElementById('st-name').value = '';
+        document.getElementById('st-new-name').value = '';
+        document.getElementById('st-name-select').value = '';
         document.getElementById('st-m1').value = '';
         document.getElementById('st-m2').value = '';
         document.getElementById('st-m3').value = '';
         document.getElementById('st-m4').value = '';
     }
 
-    // دالة حذف التلميذ المحددة وتحديث الجدول والتخزين المحلي
     function deleteStudent(index) {
-        if(confirm('هل أنت متأكد من رغبتك في حذف هذا التلميذ من سجل المتابعة؟')) {
+        if(confirm("هل أنت متأكد من حذف هذا التلميذ من سجل المتابعة؟")) {
             studentsData.splice(index, 1);
-            localStorage.setItem('alhalfawi_students', JSON.stringify(studentsData));
             renderEvalTable();
         }
     }
-
-    renderEvalTable();
 
     function changeLang(lang) {
         if(lang === 'fr') {
@@ -765,17 +772,17 @@
             document.getElementById('t7').innerText = "📜 Requête Officielle";
             
             document.getElementById('iTitle').innerText = "Objectifs et Buts du Système Pédagogique";
-            document.getElementById('iDesc1').innerText = "Le système vise à moderniser l'action pédagogique à l'école primaire El Halfawi à Médenine en intégrant les technologies modernes et l'intelligence artificielle[cite: 2].";
+            document.getElementById('iDesc1').innerText = "Le système vise à moderniser l'action pédagogique à l'école primaire El Halfawi à Médenine en intégrant les technologies modernes et l'intelligence artificielle.";
             document.getElementById('iSub').innerText = "Objectifs Cibles (Où voulons-nous mener nos élèves ?) :";
             document.getElementById('li1').innerHTML = "• <strong>Autonomie et auto-apprentissage :</strong> Permettre à l'élève d'explorer les concepts via les tablettes interactives.";
-            document.getElementById('li2').innerHTML = "• <strong>Innovation et IA :</strong> Réalisation de projets numériques et maquettes interactives inspirés de l'IA[cite: 2].";
+            document.getElementById('li2').innerHTML = "• <strong>Innovation et IA :</strong> Réalisation de projets numériques et maquettes interactives inspirés de l'IA.";
             document.getElementById('li3').innerHTML = "• <strong>Maîtrise linguistique :</strong> Dompter l'expression orale, la lecture narrative, la grammaire et la production écrite.";
             document.getElementById('li4').innerHTML = "• <strong>Évaluation participative :</strong> Offrir un espace de suivi des progrès des élèves et de remédiation.";
 
             document.getElementById('s3Head').innerText = "Plateforme des Projets 3ème Année (Édition 2026)";
             document.getElementById('s4Head').innerText = "Plateforme des Projets 4ème Année (Édition 2026)";
             document.getElementById('eTitle').innerText = "👥 Espace Suivi et Évaluation des Élèves";
-            document.getElementById('eSub').innerText = "Enregistrez les élèves, leurs niveaux et suivez leurs évaluations :";
+            document.getElementById('eSub').innerText = "Sélectionnez un élève dans la liste déroulante ou ajoutez-en un nouveau :";
 
             document.getElementById('reqRepublic').innerText = "République Tunisienne - Ministère de l'Éducation";
             document.getElementById('reqDelegation').innerText = "Délégation Régionale de l'Éducation de Médenine";
@@ -786,7 +793,7 @@
             document.getElementById('reqToLabel').innerText = "À Monsieur :";
             document.getElementById('reqSubject').innerText = "Objet : Demande de tablettes numériques et tableau interactif pour la plateforme IA";
             document.getElementById('reqBody1').innerText = "Monsieur le Délégué Régional,";
-            document.getElementById('reqBody2').innerText = "Dans le cadre de l'activation du système numérique interactif intelligent à l'école primaire El Halfawi à Médenine[cite: 2], et afin de permettre aux élèves de réaliser des projets innovants basés sur l'IA et les technologies de communication[cite: 2], nous exprimons un besoin urgent d'équiper les classes en tablettes et tableau interactif.";
+            document.getElementById('reqBody2').innerText = "Dans le cadre de l'activation du système numérique interactif intelligent à l'école primaire El Halfawi à Médenine, et afin de permettre aux élèves de réaliser des projets innovants basés sur l'IA et les technologies de communication, nous exprimons un besoin urgent d'équiper les classes en tablettes et tableau interactif.";
             document.getElementById('reqSignLabel').innerText = "Signature de l'Enseignant :";
             document.getElementById('teacherNameSign').innerText = "Jamel Jouili";
             document.getElementById('printBtn').innerText = "🖨️ Imprimer la Demande Officielle";
@@ -807,17 +814,17 @@
             document.getElementById('t7').innerText = "📜 Official Request";
             
             document.getElementById('iTitle').innerText = "System Goals and Objectives";
-            document.getElementById('iDesc1').innerText = "The system aims to modernize teaching at El Halfawi Primary School in Medenine by integrating modern technologies and artificial intelligence into daily classroom practices[cite: 2].";
+            document.getElementById('iDesc1').innerText = "The system aims to modernize teaching at El Halfawi Primary School in Medenine by integrating modern technologies and artificial intelligence into daily classroom practices.";
             document.getElementById('iSub').innerText = "Target Goals (Where do we want to take our students?):";
             document.getElementById('li1').innerHTML = "• <strong>Autonomy and Self-learning:</strong> Empower students to explore concepts via interactive tablets.";
-            document.getElementById('li2').innerHTML = "• <strong>Innovation & AI:</strong> Creating digital projects and interactive models inspired by AI[cite: 2].";
+            document.getElementById('li2').innerHTML = "• <strong>Innovation & AI:</strong> Creating digital projects and interactive models inspired by AI.";
             document.getElementById('li3').innerHTML = "• <strong>Linguistic Mastery:</strong> Master oral communication, narrative reading, grammar, and writing.";
             document.getElementById('li4').innerHTML = "• <strong>Participatory Evaluation:</strong> Provide a space to track student progress and support remediation.";
 
             document.getElementById('s3Head').innerText = "3rd Grade Projects Platform (2026 Edition)";
             document.getElementById('s4Head').innerText = "4th Grade Projects Platform (2026 Edition)";
             document.getElementById('eTitle').innerText = "👥 Student Tracking & Evaluation Space";
-            document.getElementById('eSub').innerText = "Register students, their levels, and track their evaluations:";
+            document.getElementById('eSub').innerText = "Select a student from the dropdown list or add a new one:";
 
             document.getElementById('reqRepublic').innerText = "Republic of Tunisia - Ministry of Education";
             document.getElementById('reqDelegation').innerText = "Regional Directorate of Education Medenine";
@@ -828,7 +835,7 @@
             document.getElementById('reqToLabel').innerText = "To:";
             document.getElementById('reqSubject').innerText = "Subject: Request for digital tablets and interactive whiteboard to support AI platform";
             document.getElementById('reqBody1').innerText = "Dear Regional Director,";
-            document.getElementById('reqBody2').innerText = "As part of activating the smart interactive digital system at El Halfawi Primary School in Medenine[cite: 2], and to enable students to implement innovative projects based on AI and modern communication tools[cite: 2], we express an urgent need to equip classrooms with digital tablets and an interactive whiteboard.";
+            document.getElementById('reqBody2').innerText = "As part of activating the smart interactive digital system at El Halfawi Primary School in Medenine, and to enable students to implement innovative projects based on AI and modern communication tools, we express an urgent need to equip classrooms with digital tablets and an interactive whiteboard.";
             document.getElementById('reqSignLabel').innerText = "Teacher's Signature:";
             document.getElementById('teacherNameSign').innerText = "Jamel Jouili";
             document.getElementById('printBtn').innerText = "🖨️ Print Official Request";
@@ -849,17 +856,17 @@
             document.getElementById('t7').innerText = "📜 المطلب الرسمي";
             
             document.getElementById('iTitle').innerText = "أهداف وغايات المنظومة الرقمية التفاعلية";
-            document.getElementById('iDesc1').innerText = "تهدف المنظومة إلى إحداث نقلة نوعية في الفعل التربوي بالمدرسة الابتدائية الحلفاوي بمدنين عبر دمج التكنولوجيات الحديثة والذكاء الاصطناعي في الممارسات البيداغوجية اليومية للفصل.[cite: 2]";
+            document.getElementById('iDesc1').innerText = "تهدف المنظومة إلى إحداث نقلة نوعية في الفعل التربوي بالمدرسة الابتدائية الحلفاوي بمدنين عبر دمج التكنولوجيات الحديثة والذكاء الاصطناعي في الممارسات البيداغوجية اليومية للفصل.";
             document.getElementById('iSub').innerText = "الأهداف الغائية (إلى أين نريد الوصول بتلاميذنا؟):";
             document.getElementById('li1').innerHTML = "• <strong>بناء الاستقلالية والتعلم الذاتي:</strong> تمكين المتعلم من استكشاف المفاهيم وبناء المعرفة عبر الألواح الرقمية التفاعلية.";
-            document.getElementById('li2').innerHTML = "• <strong>الابتكار وتوظيف الذكاء الاصطناعي:</strong> إنجاز مشاريع رقمية ومجسمات تفاعلية مستوحاة من محاكيات الذكاء الاصطناعي والتواصل الحديث.[cite: 2]";
+            document.getElementById('li2').innerHTML = "• <strong>الابتكار وتوظيف الذكاء الاصطناعي:</strong> إنجاز مشاريع رقمية ومجسمات تفاعلية مستوحاة من محاكيات الذكاء الاصطناعي والتواصل الحديث.";
             document.getElementById('li3').innerHTML = "• <strong>التمكن اللغوي والمنهجي:</strong> السيطرة على كفايات التواصل الشفوي، القراءة السردية، قواعد اللغة، والإنتاج الكتابي بدقة تامة.";
             document.getElementById('li4').innerHTML = "• <strong>التقييم التشاركي والمتابعة المستمرة:</strong> توفير فضاء لرصد تقدم التلاميذ ودعم التعثرات بصفة آلية وفورية.";
 
             document.getElementById('s3Head').innerText = "منصة مخططات ومشاريع السنة الثالثة ابتدائي (إصدار 2026)";
             document.getElementById('s4Head').innerText = "منصة مخططات ومشاريع السنة الرابعة ابتدائي (إصدار 2026)";
             document.getElementById('eTitle').innerText = "👥 باب المتابعة والتقييم المستمر للتلاميذ";
-            document.getElementById('eSub').innerText = "سجل بيانات التلاميذ، حدد مستواهم، وتابع تقييماتهم (مع1 إلى مع4) والمعدل الآلي:";
+            document.getElementById('eSub').innerText = "اختر اسم التلميذ من القائمة المنسدلة للتقييم، أو أضف اسماً جديداً للسجل:";
 
             document.getElementById('reqRepublic').innerText = "الجمهورية التونسية - وزارة التربية";
             document.getElementById('reqDelegation').innerText = "المندوبية الجهوية للتربية بمدنين";
@@ -870,7 +877,7 @@
             document.getElementById('reqToLabel').innerText = "إلى السيد:";
             document.getElementById('reqSubject').innerText = "الموضوع: مطلب توفير أجهزة تفاعلية وألواح رقمية لدعم منصة الذكاء الاصطناعي";
             document.getElementById('reqBody1').innerText = "سيدي المندوب الجهوي،";
-            document.getElementById('reqBody2').innerText = "في إطار تفعيل المنظومة الرقمية التفاعلية الذكية بالمدرسة الابتدائية الحلفاوي بمدنين[cite: 2]، وحرصاً منا على تمكين التلاميذ من تنفيذ المشاريع الابتكارية المعتمدة على أدوات الاتصال الحديثة والذكاء الاصطناعي[cite: 2]، يبرز الاحتياج الماسة والملحة لتجهيز الأقسام بألواح رقمية وسبورة تفاعلية حديثة لضمان جودة التعلمات.";
+            document.getElementById('reqBody2').innerText = "في إطار تفعيل المنظومة الرقمية التفاعلية الذكية بالمدرسة الابتدائية الحلفاوي بمدنين، وحرصاً منا على تمكين التلاميذ من تنفيذ المشاريع الابتكارية المعتمدة على أدوات الاتصال الحديثة والذكاء الاصطناعي، يبرز الاحتياج الماسة والملحة لتجهيز الأقسام بألواح رقمية وسبورة تفاعلية حديثة لضمان جودة التعلمات.";
             document.getElementById('reqSignLabel').innerText = "إمضاء المعلم:";
             document.getElementById('teacherNameSign').innerText = "جمال الجويلي";
             document.getElementById('printBtn').innerText = "🖨️ طباعة المطلب الرسمي";
@@ -888,9 +895,9 @@
         ctx.clearRect(0,0,600,320);
         ctx.fillStyle = '#1e3a8a'; ctx.fillRect(25, 25, 550, 270);
         ctx.fillStyle = '#fbbf24'; ctx.font = '20px Tajawal';
-        ctx.fillText('مدرسة الحلفاوي بمدنين - منصة الذكاء الاصطناعي', 80, 140);
+        ctx.fillText('مدرسة الحلفاوي بمدنين - منصة الذكاء الاصطناعي', 100, 140);
         ctx.fillStyle = '#ffffff'; ctx.font = '14px Tajawal';
-        ctx.fillText('إشراف المعلم: جمال الجويلي - مشاريع رقمية مبتكرة', 110, 185);
+        ctx.fillText('إشراف المعلم: جمال الجويلي - مشاريع رقمية مبتكرة', 120, 185);
     }
     generateDrawing();
 
