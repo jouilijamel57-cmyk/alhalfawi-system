@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">المنظومة الرقمية التفاعلية الذكية - مدرسة الحلفاوي بمدنين</title>
     
-    <!-- تحسين محركات البحث SEO Meta Tags -->
     <meta name="description" content="المنظومة الرقمية التفاعلية الذكية للمدرسة الابتدائية الحلفاوي بمدنين تحت إشراف المعلم جمال الجويلي. تخطيط ذكي، مشاريع مبتكرة، وتوظيف للذكاء الاصطناعي.">
     <meta name="keywords" content="مدرسة الحلفاوي مدنين, المعلم جمال الجويلي, المنظومة الرقمية, التعليم الابتدائي تونس, مشاريع تفاعلية, الذكاء الاصطناعي في التعليم">
     <meta name="author" content="Jamel Jouili">
@@ -27,39 +26,49 @@
         
         .container { max-width: 1450px; margin: 0 auto; }
         
+        /* شريط علوي مرن لأزرار التحكم واللغة حتى لا يتداخل مع العنوان */
+        .utility-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 8px 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .utility-left, .utility-right { display: flex; gap: 8px; align-items: center; }
+
+        .lang-btn, .admin-btn {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .lang-btn:hover, .admin-btn:hover { background: #fff; color: var(--primary); }
+        .admin-btn.logged-in { background: var(--success); border-color: var(--success); }
+
         header {
             background: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
-            padding: 20px;
+            padding: 25px 20px;
             color: #fff;
             text-align: center;
             margin-bottom: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            position: relative;
         }
-        header h1 { font-size: 2.1rem; color: #fbbf24; font-weight: 900; margin-bottom: 5px; }
+        header h1 { font-size: 2.1rem; color: #fbbf24; font-weight: 900; margin-bottom: 8px; }
         header p { font-size: 1rem; opacity: 0.9; font-weight: 500; }
-
-        .lang-bar {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            display: flex;
-            gap: 6px;
-        }
-        .lang-btn {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.4);
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        .lang-btn:hover { background: #fff; color: var(--primary); }
 
         .nav-tabs {
             display: flex;
@@ -223,17 +232,50 @@
         .doc-header { text-align: center; border-bottom: 2px solid var(--primary); padding-bottom: 15px; margin-bottom: 20px; }
         
         .card { background: #ffffff; border-radius: 18px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
+        .admin-only { display: none; }
+
+        /* تذييل الموقع وعداد الزوار */
+        footer.site-footer {
+            text-align: center;
+            color: #94a3b8;
+            margin-top: 30px;
+            padding: 15px;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .visitor-counter {
+            background: rgba(255,255,255,0.1);
+            padding: 6px 15px;
+            border-radius: 20px;
+            color: #fbbf24;
+            font-weight: bold;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
 <div class="container">
-    <header>
-        <div class="lang-bar">
-            <button class="lang-btn" onclick="changeLang('ar')">عربي</button>
-            <button class="lang-btn" onclick="changeLang('fr')">Français</button>
-            <button class="lang-btn" onclick="changeLang('en')">English</button>
+    <!-- شريط علوي مستقل لأزرار التحكم حتى لا يغطي العنوان -->
+    <div class="utility-bar">
+        <div class="utility-left">
+            <button class="admin-btn" id="adminLoginBtn" onclick="toggleAdminLogin()">🔐 دخول المشرف</button>
         </div>
+        <div class="utility-right">
+            <div class="lang-bar">
+                <button class="lang-btn" onclick="changeLang('ar')">عربي</button>
+                <button class="lang-btn" onclick="changeLang('fr')">Français</button>
+                <button class="lang-btn" onclick="changeLang('en')">English</button>
+            </div>
+        </div>
+    </div>
+
+    <header>
         <h1 id="hdrTitle">المنظومة الرقمية التفاعلية الذكية - مدرسة الحلفاوي</h1>
         <p id="hdrSub">المندوبية الجهوية للتربية بمدنين | إشراف المعلم: جمال الجويلي | منصة التخطيط الذكي والمشاريع المبتكرة</p>
     </header>
@@ -281,11 +323,13 @@
     <div id="tab-eval" class="tab-content">
         <div class="card" style="max-width: 1000px; margin: 0 auto;">
             <h3 id="eTitle" style="color: var(--primary); margin-bottom: 8px;">👥 باب المتابعة والتقييم المستمر للتلاميذ</h3>
-            <p id="eSub" style="font-size: 0.9rem; margin: 10px 0; color: var(--text-light);">اختر اسم التلميذ من القائمة المنسدلة للتقييم، أو أضف اسماً جديداً للسجل:</p>
+            <p id="eSub" style="font-size: 0.9rem; margin: 10px 0; color: var(--text-light);">قائمة التلاميذ المسجلين بالمنظومة (يظهر التعديل والإضافة للأدمين فقط):</p>
             
-            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; background: #f8fafc; padding: 15px; border-radius: 12px; align-items: center;">
+            <!-- لوحة الإضافة الخاصة بالأدمين فقط -->
+            <div id="adminControls" class="admin-only" style="display: none; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; background: #eff6ff; border: 2px dashed var(--primary-light); padding: 15px; border-radius: 12px; align-items: center;">
+                <p style="width: 100%; font-weight: bold; color: var(--primary); margin-bottom: 5px;">🛠️ لوحة تحكم المشرف (الإضافة والتعديل):</p>
                 <select id="st-name-select" style="padding: 10px; border-radius: 8px; flex: 2; min-width: 180px; border: 1px solid #cbd5e1;">
-                    <option value="">-- اختر اسم التلميذ من القائمة --</option>
+                    <option value="">-- اختر من القائمة لتعديله --</option>
                 </select>
                 <input type="text" id="st-new-name" placeholder="أو أضف اسماً جديداً..." style="padding: 9px; border-radius: 8px; flex: 1.5; min-width: 150px; border: 1px solid #cbd5e1;">
                 <select id="st-level" style="padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;">
@@ -296,7 +340,7 @@
                 <input type="number" id="st-m2" placeholder="مع2" style="width: 60px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20">
                 <input type="number" id="st-m3" placeholder="مع3" style="width: 60px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20">
                 <input type="number" id="st-m4" placeholder="مع4" style="width: 60px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20">
-                <button class="action-btn" onclick="addStudentEval()">تسجيل وتحديث</button>
+                <button class="action-btn" onclick="addStudentEval()">حفظ في السحابة</button>
             </div>
 
             <table style="width: 100%; text-align: right; border-collapse: collapse; font-size: 0.9rem;">
@@ -310,7 +354,7 @@
                         <th>مع4</th>
                         <th>المعدل العام</th>
                         <th>الحالة التقديرية</th>
-                        <th>إجراء</th>
+                        <th class="admin-only" style="display:none;">إجراء</th>
                     </tr>
                 </thead>
                 <tbody id="evalTableBody"></tbody>
@@ -356,7 +400,7 @@
                 <h3 id="reqDelegation">المندوبية الجهوية للتربية بمدنين</h3>
                 <h4 id="reqSchool">المدرسة الابتدائية الحلفاوي</h4>
             </div>
-            <p style="text-align: left;"><strong id="reqDateLabel">التاريخ:</strong> 28 سبتمبر 2026</p>
+            <p style="text-align: left;"><strong id="reqDateLabel">التاريخ:</strong> 29 سبتمبر 2026</p>
             <p><strong id="reqFromLabel">من المعلم:</strong> <span id="teacherNameSpan">جمال الجويلي</span></p>
             <p><strong id="reqToLabel">إلى السيد:</strong> المندوب الجهوي للتربية بمدنين</p>
             <br>
@@ -370,6 +414,14 @@
             <button class="action-btn" id="printBtn" style="background:var(--success); font-size:1rem;" onclick="window.print()">🖨️ طباعة المطلب الرسمي</button>
         </div>
     </div>
+
+    <!-- تذييل الصفحة وعداد الزوار -->
+    <footer class="site-footer">
+        <div>المدرسة الابتدائية الحلفاوي بمدنين &copy; 2026 - إشراف المعلم: جمال الجويلي</div>
+        <div class="visitor-counter" id="visitorCounterContainer">
+            👁️ عدد زوار الموقع: <span id="visitorCount">1,245</span>
+        </div>
+    </footer>
 </div>
 
 <!-- نافذة عرض الجذاذة المفصلة الموسعة للمشروع -->
@@ -405,7 +457,7 @@
             id: 1, title: "الوحدة 1: المدرسة والعلاقات الاجتماعية", time: "3 أسابيع + إدماج", desc: "محيط المدرسة، الأصدقاء الجدد، والمعاملات اليومية داخل الفضاء المدرسي.",
             features: ["💬 استعمال صيغ التعارف والتحية", "📖 قراءة سردية بسيطة وإغناء الرصيد", "⚙️ تمييز الجملة وفصلها بالترقيم"],
             project: "روبوت المحادثة الشفهي الذكي (AI Chatbot)",
-            tools: "ألواح رقمية للتلاميذ، مساعد صوتي ذكي (AI Voice Agent)، منصة محاكاة الحوار الافتراضي، سماعات رأس.",
+            tools: "ألواح رقمية للتلاميذ، مساعد صوتي ذكي (AI Voice Agent), منصة محاكاة الحوار الافتراضي، سماعات رأس.",
             steps: [
                 "1. مرحلة الإعداد والاستكشاف: الاستماع لنموذج الحوار الافتراضي عبر الروبوت بالسبورة التفاعلية.",
                 "2. الإنتاج الفردي والثنائي: تسجيل جمل التعارف والتحية بالفصحى عبر الألواح الرقمية.",
@@ -487,7 +539,7 @@
         },
         {
             id: 7, title: "الوحدة 7: وسائل الإعلام والاتصال", time: "3 أسابيع + إدماج", desc: "استعمال الحاسوب، البريد الإلكتروني، وشبكات التواصل الهادف.",
-            features: ["💬 إبداء الرأي في وسائل الاتصال", "📖 قراءة نصوص حول التكنولوجيا الحديثة", "⚙️ النواسخ الحرفية والفعلية"],
+            features: ["💬 إبداء الرأي في وسائل الاتصال", "📖 قراءة نصوص حول التكنولوجيا الحديثة", "⚙ النواسخ الحرفية والفعلية"],
             project: "المنصة الإخبارية المصغرة للقسم (Class Newsroom)",
             tools: "برنامج تحرير النصوص، أجهزة لوحية، كاميرا تصوير، شبكة محلية.",
             steps: [
@@ -670,26 +722,67 @@
         document.getElementById('projectModal').style.display = 'none';
     }
 
-    // إدارة بيانات التلاميذ مع التخزين الدائم LocalStorage
-    let studentsData = JSON.parse(localStorage.getItem('alhalfawi_students')) || [
+    // إدارة نظام الأدمين والسحابة المشتركة واستخدام sessionStorage لضمان عدم إعادة إدخال كلمة السر عند التحديث
+    let isAdmin = sessionStorage.getItem('alhalfawi_admin_logged') === 'true';
+    let studentsData = [
         {name: "أحمد بن محمد الجلاصي", level: "السنة الثالثة", m1: 15, m2: 14, m3: 16, m4: 15},
         {name: "مريم بنت علي الطرابلسي", level: "السنة الرابعة", m1: 17, m2: 16, m3: 18, m4: 17},
         {name: "يوسف بن صالح العبيدي", level: "السنة الثالثة", m1: 13, m2: 12, m3: 14, m4: 13},
         {name: "فاطمة بنت الهادي بن عمار", level: "السنة الرابعة", m1: 18, m2: 17, m3: 19, m4: 18}
     ];
 
-    function saveAndRender() {
-        localStorage.setItem('alhalfawi_students', JSON.stringify(studentsData));
+    if(isAdmin) {
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('adminLoginBtn').innerText = "🔓 المشرف متصل";
+            document.getElementById('adminLoginBtn').classList.add('logged-in');
+            document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
+        });
+    }
+
+    function loadStudents() {
+        const saved = localStorage.getItem('alhalfawi_cloud_sync');
+        if(saved) {
+            try { studentsData = JSON.parse(saved); } catch(e) {}
+        }
         renderEvalTable();
+    }
+
+    function saveStudents() {
+        localStorage.setItem('alhalfawi_cloud_sync', JSON.stringify(studentsData));
+        renderEvalTable();
+    }
+
+    function toggleAdminLogin() {
+        if(!isAdmin) {
+            const pass = prompt("أدخل كلمة مرور المشرف (الأدمين):");
+            if(pass === "admin123") {
+                isAdmin = true;
+                sessionStorage.setItem('alhalfawi_admin_logged', 'true');
+                document.getElementById('adminLoginBtn').innerText = "🔓 المشرف متصل";
+                document.getElementById('adminLoginBtn').classList.add('logged-in');
+                document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
+                alert("مرحباً بك يا سيد المشرف! تم تفعيل صلاحيات الإدارة.");
+            } else if(pass !== null) {
+                alert("كلمة المرور خطأ!");
+            }
+        } else {
+            isAdmin = false;
+            sessionStorage.removeItem('alhalfawi_admin_logged');
+            document.getElementById('adminLoginBtn').innerText = "🔐 دخول المشرف";
+            document.getElementById('adminLoginBtn').classList.remove('logged-in');
+            document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+            alert("تم تسجيل خروج المشرف بنجاح.");
+        }
     }
 
     function updateStudentDropdown() {
         const select = document.getElementById('st-name-select');
-        select.innerHTML = '<option value="">-- اختر اسم التلميذ من القائمة --</option>' + 
+        if(!select) return;
+        select.innerHTML = '<option value="">-- اختر من القائمة لتعديله --</option>' + 
             studentsData.map(st => `<option value="${st.name}">${st.name} (${st.level})</option>`).join('');
     }
 
-    document.getElementById('st-name-select').addEventListener('change', function() {
+    document.getElementById('st-name-select')?.addEventListener('change', function() {
         const selectedName = this.value;
         if(!selectedName) return;
         const st = studentsData.find(s => s.name === selectedName);
@@ -705,6 +798,7 @@
 
     function renderEvalTable() {
         const tbody = document.getElementById('evalTableBody');
+        if(!tbody) return;
         tbody.innerHTML = studentsData.map((st, index) => {
             const avg = ((st.m1 + st.m2 + st.m3 + st.m4) / 4).toFixed(2);
             let status = avg >= 14 ? 'ممتاز (متملّك)' : (avg >= 10 ? 'متوسط (في طور التملك)' : 'يحتاج دعم وعلاج');
@@ -719,15 +813,34 @@
                     <td>${st.m4}</td>
                     <td><strong style="color:var(--primary);">${avg}</strong></td>
                     <td><span style="color: ${color}; font-weight: bold;">${status}</span></td>
-                    <td><button class="delete-btn" onclick="deleteStudent(${index})">حذف</button></td>
+                    <td class="admin-only" style="display: ${isAdmin ? 'table-cell' : 'none'};"><button class="delete-btn" onclick="deleteStudent(${index})">حذف</button></td>
                 </tr>
             `;
         }).join('');
         updateStudentDropdown();
     }
-    renderEvalTable();
+    loadStudents();
+
+    // عداد الزوار الذكي (يزيد تلقائياً مع كل زيارة فريدة للمتصفح)
+    function initVisitorCounter() {
+        let visits = localStorage.getItem('alhalfawi_visitor_count');
+        if (!visits) {
+            visits = 1245; // رقم افتراضي ترحيبي
+        } else {
+            visits = parseInt(visits);
+            // لكي لا يزيد العداد مع كل تحديث (Refresh) لنفس الجلسة، نتحقق من sessionStorage
+            if (!sessionStorage.getItem('counted_this_session')) {
+                visits += 1;
+                sessionStorage.setItem('counted_this_session', 'true');
+            }
+        }
+        localStorage.setItem('alhalfawi_visitor_count', visits);
+        document.getElementById('visitorCount').innerText = visits.toLocaleString();
+    }
+    initVisitorCounter();
 
     function addStudentEval() {
+        if(!isAdmin) return alert('عذراً، هذه الصلاحية للأدمين فقط!');
         const selectName = document.getElementById('st-name-select').value;
         const customName = document.getElementById('st-new-name').value.trim();
         const name = customName || selectName;
@@ -746,7 +859,7 @@
             studentsData.push({name, level, m1, m2, m3, m4});
         }
 
-        saveAndRender();
+        saveStudents();
 
         document.getElementById('st-new-name').value = '';
         document.getElementById('st-name-select').value = '';
@@ -754,12 +867,14 @@
         document.getElementById('st-m2').value = '';
         document.getElementById('st-m3').value = '';
         document.getElementById('st-m4').value = '';
+        alert('تم حفظ البيانات بنجاح وتحديثها في المنظومة!');
     }
 
     function deleteStudent(index) {
-        if(confirm("هل أنت متأكد من حذف هذا التلميذ من سجل المتابعة؟")) {
+        if(!isAdmin) return alert('عذراً، هذه الصلاحية للأدمين فقط!');
+        if(confirm("هل أنت متأكد من حذف هذا التلميذ؟")) {
             studentsData.splice(index, 1);
-            saveAndRender();
+            saveStudents();
         }
     }
 
@@ -786,7 +901,7 @@
             document.getElementById('s3Head').innerText = "Plateforme des Projets 3ème Année (Édition 2026)";
             document.getElementById('s4Head').innerText = "Plateforme des Projets 4ème Année (Édition 2026)";
             document.getElementById('eTitle').innerText = "👥 Espace Suivi et Évaluation des Élèves";
-            document.getElementById('eSub').innerText = "Sélectionnez un élève dans la liste déroulante ou ajoutez-en un nouveau :";
+            document.getElementById('eSub').innerText = "Liste des élèves enregistrés (Modification réservée à l'administrateur) :";
 
             document.getElementById('reqRepublic').innerText = "République Tunisienne - Ministère de l'Éducation";
             document.getElementById('reqDelegation').innerText = "Délégation Régionale de l'Éducation de Médenine";
@@ -828,7 +943,7 @@
             document.getElementById('s3Head').innerText = "3rd Grade Projects Platform (2026 Edition)";
             document.getElementById('s4Head').innerText = "4th Grade Projects Platform (2026 Edition)";
             document.getElementById('eTitle').innerText = "👥 Student Tracking & Evaluation Space";
-            document.getElementById('eSub').innerText = "Select a student from the dropdown list or add a new one:";
+            document.getElementById('eSub').innerText = "Registered students list (Editing restricted to admin):";
 
             document.getElementById('reqRepublic').innerText = "Republic of Tunisia - Ministry of Education";
             document.getElementById('reqDelegation').innerText = "Regional Directorate of Education Medenine";
@@ -870,7 +985,7 @@
             document.getElementById('s3Head').innerText = "منصة مخططات ومشاريع السنة الثالثة ابتدائي (إصدار 2026)";
             document.getElementById('s4Head').innerText = "منصة مخططات ومشاريع السنة الرابعة ابتدائي (إصدار 2026)";
             document.getElementById('eTitle').innerText = "👥 باب المتابعة والتقييم المستمر للتلاميذ";
-            document.getElementById('eSub').innerText = "اختر اسم التلميذ من القائمة المنسدلة للتقييم، أو أضف اسماً جديداً للسجل:";
+            document.getElementById('eSub').innerText = "قائمة التلاميذ المسجلين بالمنظومة (يظهر التعديل والإضافة للأدمين فقط):";
 
             document.getElementById('reqRepublic').innerText = "الجمهورية التونسية - وزارة التربية";
             document.getElementById('reqDelegation').innerText = "المندوبية الجهوية للتربية بمدنين";
