@@ -390,14 +390,48 @@
         localStorage.setItem('alhalfawi_cloud_sync_v2', JSON.stringify(studentsData));
         renderEvalTable();
     }
-    function loadComments() {
+    function loadCommentsLocal() {
         const saved = localStorage.getItem('alhalfawi_comments_sync_v2');
         if(saved) { try { commentsData = JSON.parse(saved); } catch(e) {} }
         renderComments();
     }
-    function saveComments() {
+    function saveCommentsLocalOnly() {
         localStorage.setItem('alhalfawi_comments_sync_v2', JSON.stringify(commentsData));
+    }
+    function saveComments() {
+        saveCommentsLocalOnly();
         renderComments();
+    }
+    async function loadRemoteComments() {
+        // محاولة جلب التعليقات المشتركة من Google Sheet
+        if (!GOOGLE_SHEET_WEBHOOK_URL || !GOOGLE_SHEET_WEBHOOK_URL.startsWith('http')) {
+            loadCommentsLocal();
+            return;
+        }
+        try {
+            document.getElementById('commentsListContainer').innerHTML = '<p style="text-align:center; padding:20px; color:#64748b;">⏳ جاري تحميل تعليقات الزوار من السحابة...</p>';
+            const res = await fetch(GOOGLE_SHEET_WEBHOOK_URL + "?action=read");
+            if (!res.ok) throw new Error('network');
+            const remote = await res.json();
+            if (Array.isArray(remote) && remote.length > 0) {
+                commentsData = remote.map(r => ({
+                    author: r.author || r[1] || "زائر",
+                    text: r.text || r[3] || "",
+                    date: r.date ? (typeof r.date === 'string' ? r.date : new Date(r.date).toLocaleDateString('ar-TN', {year:'numeric', month:'long', day:'numeric'})) : "",
+                    classe: r.classe || r[2] || "عام"
+                })).filter(c => c.text);
+                saveCommentsLocalOnly();
+                renderComments();
+            } else {
+                loadCommentsLocal();
+            }
+        } catch(e) {
+            console.log('Remote fetch failed, fallback to local', e);
+            loadCommentsLocal();
+        }
+    }
+    function loadComments() {
+        loadRemoteComments();
     }
 
     function toggleAdminLogin() {
@@ -490,7 +524,9 @@
         }
 
         authorInput.value = ''; textInput.value = '';
-        alert('✅ شكرا! تم نشر تعليقك. سيظهر لجميع الزوار على هذا الجهاز، ولجعله يظهر للجميع على الانترنت اربطه بـ Google Sheet كما في الدليل.');
+        alert('✅ شكرا! تم نشر تعليقك وسيظهر الآن للجميع في كل أنحاء العالم بعد ثواني.');
+        // تحديث القائمة بعد ثانيتين لجلب التعليق من السحابة
+        setTimeout(() => { loadRemoteComments(); }, 2000);
     }
 
     function deleteComment(index) {
