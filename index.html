@@ -532,7 +532,7 @@
         },
         {
             id: 2, title: "الوحدة 2: التضامن والمواطنة", time: "3 أسابيع + إدماج", desc: "إنشاء وتأثيث مكتبة القسم، الترابط الأسري والمجتمعي.",
-            features: ["💬 سرد حكايات تضامنية", "📖 قراءة نص البنية السردية المعقدة", "⚙️️ المفعول به بأنواعه (مفردة ومركباً)"],
+            features: ["💬 سرد حكايات تضامنية", "📖 قراءة نص البنية السردية المعقدة", "⚙ المفعول به بأنواعه (مفردة ومركباً)"],
             project: "المكتبة الرقمية التشاركية الذكية (Smart Digital Library)",
             tools: "قاعدة بيانات مصغرة للكتب، باركود (QR Code) لتصنيف الكتب، ألواح.",
             steps: [
@@ -670,12 +670,18 @@
         document.getElementById('projectModal').style.display = 'none';
     }
 
-    let studentsData = [
+    // إدارة بيانات التلاميذ مع التخزين الدائم LocalStorage
+    let studentsData = JSON.parse(localStorage.getItem('alhalfawi_students')) || [
         {name: "أحمد بن محمد الجلاصي", level: "السنة الثالثة", m1: 15, m2: 14, m3: 16, m4: 15},
         {name: "مريم بنت علي الطرابلسي", level: "السنة الرابعة", m1: 17, m2: 16, m3: 18, m4: 17},
         {name: "يوسف بن صالح العبيدي", level: "السنة الثالثة", m1: 13, m2: 12, m3: 14, m4: 13},
         {name: "فاطمة بنت الهادي بن عمار", level: "السنة الرابعة", m1: 18, m2: 17, m3: 19, m4: 18}
     ];
+
+    function saveAndRender() {
+        localStorage.setItem('alhalfawi_students', JSON.stringify(studentsData));
+        renderEvalTable();
+    }
 
     function updateStudentDropdown() {
         const select = document.getElementById('st-name-select');
@@ -683,7 +689,6 @@
             studentsData.map(st => `<option value="${st.name}">${st.name} (${st.level})</option>`).join('');
     }
 
-    // ربط اختيار القائمة المنسدلة بتعبئة البيانات تلقائياً للتعديل السريع
     document.getElementById('st-name-select').addEventListener('change', function() {
         const selectedName = this.value;
         if(!selectedName) return;
@@ -734,7 +739,6 @@
 
         if(!name) return alert('يرجى اختيار اسم التلميذ أو إدخال اسم جديد');
         
-        // التحقق إن كان التلميذ موجوداً لتحديثه أو إضافته كجديد
         const existingIndex = studentsData.findIndex(s => s.name === name);
         if(existingIndex >= 0) {
             studentsData[existingIndex] = {name, level, m1, m2, m3, m4};
@@ -742,7 +746,7 @@
             studentsData.push({name, level, m1, m2, m3, m4});
         }
 
-        renderEvalTable();
+        saveAndRender();
 
         document.getElementById('st-new-name').value = '';
         document.getElementById('st-name-select').value = '';
@@ -755,7 +759,7 @@
     function deleteStudent(index) {
         if(confirm("هل أنت متأكد من حذف هذا التلميذ من سجل المتابعة؟")) {
             studentsData.splice(index, 1);
-            renderEvalTable();
+            saveAndRender();
         }
     }
 
