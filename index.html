@@ -234,6 +234,12 @@
         .card { background: #ffffff; border-radius: 18px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
         .admin-only { display: none; }
 
+        /* تصميم قسم التعليقات والآراء */
+        .comment-box-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; margin-bottom: 15px; }
+        .comment-item { background: #fff; border-right: 4px solid var(--primary-light); padding: 12px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .comment-header { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-light); margin-bottom: 5px; }
+        .comment-author { font-weight: bold; color: var(--primary); }
+
         /* تذييل الموقع وعداد الزوار */
         footer.site-footer {
             text-align: center;
@@ -287,6 +293,7 @@
         <button class="tab-btn" onclick="switchTab('tab-eval')" id="t4">👥 باب المتابعة والتقييم</button>
         <button class="tab-btn" onclick="switchTab('tab-canvas')" id="t5">🎨 محاكي الرسوم</button>
         <button class="tab-btn" onclick="switchTab('tab-audio')" id="t6">🔊 محاكي الصوت</button>
+        <button class="tab-btn" onclick="switchTab('tab-comments')" id="t8" style="background:#059669; color:#fff;">💬 آراء وتفاعلات الزوار</button>
         <button class="tab-btn" style="background: var(--accent); color: #fff;" onclick="switchTab('tab-request')" id="t7">📜 المطلب الرسمي</button>
     </div>
 
@@ -388,6 +395,24 @@
             <div style="display:flex; gap:10px;">
                 <button class="action-btn" onclick="speakText()">قراءة النص</button>
                 <button class="action-btn" style="background:#dc2626;" onclick="window.speechSynthesis.cancel()">إيقاف</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ركن آراء وتفاعلات الزوار -->
+    <div id="tab-comments" class="tab-content">
+        <div class="card" style="max-width: 800px; margin: 0 auto;">
+            <h3 style="color: var(--primary); margin-bottom: 10px;">💬 ركن آراء وتفاعلات الأولياء والزوار</h3>
+            <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 15px;">نرحب بملاحظاتكم، تقييماتكم، واقتراحاتكم لتطوير العمل التربوي والمشاريع الرقمية:</p>
+            
+            <div class="comment-box-card">
+                <input type="text" id="commentName" placeholder="اسم الزائر / ولي الأمر / الزميل..." style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; margin-bottom: 10px;">
+                <textarea id="commentText" placeholder="اكتب رأيك أو تعليقك هنا..." style="width: 100%; height: 90px; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; margin-bottom: 10px;"></textarea>
+                <button class="action-btn" onclick="addNewComment()">نشر التعليق</button>
+            </div>
+
+            <div id="commentsListContainer" style="margin-top: 20px;">
+                <!-- سيتم حقن التعليقات هنا تلقائياً -->
             </div>
         </div>
     </div>
@@ -722,13 +747,19 @@
         document.getElementById('projectModal').style.display = 'none';
     }
 
-    // إدارة نظام الأدمين والسحابة المشتركة واستخدام sessionStorage لضمان عدم إعادة إدخال كلمة السر عند التحديث
+    // إدارة نظام الأدمين والسحابة المشتركة واستخدام sessionStorage
     let isAdmin = sessionStorage.getItem('alhalfawi_admin_logged') === 'true';
     let studentsData = [
         {name: "أحمد بن محمد الجلاصي", level: "السنة الثالثة", m1: 15, m2: 14, m3: 16, m4: 15},
         {name: "مريم بنت علي الطرابلسي", level: "السنة الرابعة", m1: 17, m2: 16, m3: 18, m4: 17},
         {name: "يوسف بن صالح العبيدي", level: "السنة الثالثة", m1: 13, m2: 12, m3: 14, m4: 13},
         {name: "فاطمة بنت الهادي بن عمار", level: "السنة الرابعة", m1: 18, m2: 17, m3: 19, m4: 18}
+    ];
+
+    // نظام التعليقات التفاعلي
+    let commentsData = [
+        {author: "ولي تلميذ (السنة الثالثة)", text: "مبادرة ممتازة جداً يا معلم جمال، دمج التكنولوجيا يرفع من استيعاب أبنائنا.", date: "29 سبتمبر 2026"},
+        {author: "أحمد (زائر)", text: "منظومة رقمية رائعة ومبهرة، بالتوفيق لمدرسة الحلفاوي بمدنين.", date: "29 سبتمبر 2026"}
     ];
 
     if(isAdmin) {
@@ -752,6 +783,19 @@
         renderEvalTable();
     }
 
+    function loadComments() {
+        const saved = localStorage.getItem('alhalfawi_comments_sync');
+        if(saved) {
+            try { commentsData = JSON.parse(saved); } catch(e) {}
+        }
+        renderComments();
+    }
+
+    function saveComments() {
+        localStorage.setItem('alhalfawi_comments_sync', JSON.stringify(commentsData));
+        renderComments();
+    }
+
     function toggleAdminLogin() {
         if(!isAdmin) {
             const pass = prompt("أدخل كلمة مرور المشرف (الأدمين):");
@@ -761,6 +805,7 @@
                 document.getElementById('adminLoginBtn').innerText = "🔓 المشرف متصل";
                 document.getElementById('adminLoginBtn').classList.add('logged-in');
                 document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
+                renderComments();
                 alert("مرحباً بك يا سيد المشرف! تم تفعيل صلاحيات الإدارة.");
             } else if(pass !== null) {
                 alert("كلمة المرور خطأ!");
@@ -771,6 +816,7 @@
             document.getElementById('adminLoginBtn').innerText = "🔐 دخول المشرف";
             document.getElementById('adminLoginBtn').classList.remove('logged-in');
             document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+            renderComments();
             alert("تم تسجيل خروج المشرف بنجاح.");
         }
     }
@@ -821,14 +867,54 @@
     }
     loadStudents();
 
-    // عداد الزوار الذكي (يزيد تلقائياً مع كل زيارة فريدة للمتصفح)
+    function renderComments() {
+        const container = document.getElementById('commentsListContainer');
+        if(!container) return;
+        container.innerHTML = commentsData.map((c, idx) => `
+            <div class="comment-item">
+                <div class="comment-header">
+                    <span class="comment-author">👤 ${c.author}</span>
+                    <span>${c.date}</span>
+                </div>
+                <p style="font-size: 0.92rem; color: var(--text-dark);">${c.text}</p>
+                ${isAdmin ? `<button class="delete-btn" style="margin-top: 8px;" onclick="deleteComment(${idx})">حذف التعليق</button>` : ''}
+            </div>
+        `).join('');
+    }
+    loadComments();
+
+    function addNewComment() {
+        const authorInput = document.getElementById('commentName');
+        const textInput = document.getElementById('commentText');
+        const author = authorInput.value.trim() || "زائر مجهول";
+        const text = textInput.value.trim();
+
+        if(!text) return alert('يرجى كتابة نص التعليق أولاً!');
+
+        const dateNow = new Date().toLocaleDateString('ar-TN', { year: 'numeric', month: 'long', day: 'numeric' });
+        commentsData.unshift({author, text, date: dateNow});
+        saveComments();
+
+        authorInput.value = '';
+        textInput.value = '';
+        alert('شكراً لك! تمت إضافة تعليقك بنجاح للمنظومة.');
+    }
+
+    function deleteComment(index) {
+        if(!isAdmin) return alert('هذه الصلاحية للأدمين فقط!');
+        if(confirm("هل تريد حذف هذا التعليق؟")) {
+            commentsData.splice(index, 1);
+            saveComments();
+        }
+    }
+
+    // عداد الزوار الذكي
     function initVisitorCounter() {
         let visits = localStorage.getItem('alhalfawi_visitor_count');
         if (!visits) {
-            visits = 1245; // رقم افتراضي ترحيبي
+            visits = 1245;
         } else {
             visits = parseInt(visits);
-            // لكي لا يزيد العداد مع كل تحديث (Refresh) لنفس الجلسة، نتحقق من sessionStorage
             if (!sessionStorage.getItem('counted_this_session')) {
                 visits += 1;
                 sessionStorage.setItem('counted_this_session', 'true');
@@ -888,39 +974,8 @@
             document.getElementById('t4').innerText = "👥 Suivi & Évaluation";
             document.getElementById('t5').innerText = "🎨 Atelier Dessin";
             document.getElementById('t6').innerText = "🔊 Synthèse Vocale";
+            document.getElementById('t8').innerText = "💬 Avis & Commentaires";
             document.getElementById('t7').innerText = "📜 Requête Officielle";
-            
-            document.getElementById('iTitle').innerText = "Objectifs et Buts du Système Pédagogique";
-            document.getElementById('iDesc1').innerText = "Le système vise à moderniser l'action pédagogique à l'école primaire El Halfawi à Médenine en intégrant les technologies modernes et l'intelligence artificielle.";
-            document.getElementById('iSub').innerText = "Objectifs Cibles (Où voulons-nous mener nos élèves ?) :";
-            document.getElementById('li1').innerHTML = "• <strong>Autonomie et auto-apprentissage :</strong> Permettre à l'élève d'explorer les concepts via les tablettes interactives.";
-            document.getElementById('li2').innerHTML = "• <strong>Innovation et IA :</strong> Réalisation de projets numériques et maquettes interactives inspirés de l'IA.";
-            document.getElementById('li3').innerHTML = "• <strong>Maîtrise linguistique :</strong> Dompter l'expression orale, la lecture narrative, la grammaire et la production écrite.";
-            document.getElementById('li4').innerHTML = "• <strong>Évaluation participative :</strong> Offrir un espace de suivi des progrès des élèves et de remédiation.";
-
-            document.getElementById('s3Head').innerText = "Plateforme des Projets 3ème Année (Édition 2026)";
-            document.getElementById('s4Head').innerText = "Plateforme des Projets 4ème Année (Édition 2026)";
-            document.getElementById('eTitle').innerText = "👥 Espace Suivi et Évaluation des Élèves";
-            document.getElementById('eSub').innerText = "Liste des élèves enregistrés (Modification réservée à l'administrateur) :";
-
-            document.getElementById('reqRepublic').innerText = "République Tunisienne - Ministère de l'Éducation";
-            document.getElementById('reqDelegation').innerText = "Délégation Régionale de l'Éducation de Médenine";
-            document.getElementById('reqSchool').innerText = "École Primaire El Halfawi";
-            document.getElementById('reqDateLabel').innerText = "Date :";
-            document.getElementById('reqFromLabel').innerText = "De l'Enseignant :";
-            document.getElementById('teacherNameSpan').innerText = "Jamel Jouili";
-            document.getElementById('reqToLabel').innerText = "À Monsieur :";
-            document.getElementById('reqSubject').innerText = "Objet : Demande de tablettes numériques et tableau interactif pour la plateforme IA";
-            document.getElementById('reqBody1').innerText = "Monsieur le Délégué Régional,";
-            document.getElementById('reqBody2').innerText = "Dans le cadre de l'activation du système numérique interactif intelligent à l'école primaire El Halfawi à Médenine, et afin de permettre aux élèves de réaliser des projets innovants basés sur l'IA et les technologies de communication, nous exprimons un besoin urgent d'équiper les classes en tablettes et tableau interactif.";
-            document.getElementById('reqSignLabel').innerText = "Signature de l'Enseignant :";
-            document.getElementById('teacherNameSign').innerText = "Jamel Jouili";
-            document.getElementById('printBtn').innerText = "🖨️ Imprimer la Demande Officielle";
-
-            document.getElementById('lblTools').innerText = "🛠️ Outils et Supports Technologiques Avancés :";
-            document.getElementById('lblSteps').innerText = "📈 Étapes Méthodologiques et Pratiques (Fiche Détaillée) :";
-            document.getElementById('lblPedagogy').innerText = "🎯 Dimensions Pédagogiques et Produit Attendu :";
-
         } else if(lang === 'en') {
             document.getElementById('hdrTitle').innerText = "Smart Interactive Digital System - El Halfawi School";
             document.getElementById('hdrSub').innerText = "Regional Directorate of Education Medenine | Teacher: Jamel Jouili | Projects Platform";
@@ -930,39 +985,8 @@
             document.getElementById('t4').innerText = "👥 Tracking & Eval";
             document.getElementById('t5').innerText = "🎨 Drawing Studio";
             document.getElementById('t6').innerText = "🔊 Voice Simulator";
+            document.getElementById('t8').innerText = "💬 Feedback & Reviews";
             document.getElementById('t7').innerText = "📜 Official Request";
-            
-            document.getElementById('iTitle').innerText = "System Goals and Objectives";
-            document.getElementById('iDesc1').innerText = "The system aims to modernize teaching at El Halfawi Primary School in Medenine by integrating modern technologies and artificial intelligence into daily classroom practices.";
-            document.getElementById('iSub').innerText = "Target Goals (Where do we want to take our students?):";
-            document.getElementById('li1').innerHTML = "• <strong>Autonomy and Self-learning:</strong> Empower students to explore concepts via interactive tablets.";
-            document.getElementById('li2').innerHTML = "• <strong>Innovation & AI:</strong> Creating digital projects and interactive models inspired by AI.";
-            document.getElementById('li3').innerHTML = "• <strong>Linguistic Mastery:</strong> Master oral communication, narrative reading, grammar, and writing.";
-            document.getElementById('li4').innerHTML = "• <strong>Participatory Evaluation:</strong> Provide a space to track student progress and support remediation.";
-
-            document.getElementById('s3Head').innerText = "3rd Grade Projects Platform (2026 Edition)";
-            document.getElementById('s4Head').innerText = "4th Grade Projects Platform (2026 Edition)";
-            document.getElementById('eTitle').innerText = "👥 Student Tracking & Evaluation Space";
-            document.getElementById('eSub').innerText = "Registered students list (Editing restricted to admin):";
-
-            document.getElementById('reqRepublic').innerText = "Republic of Tunisia - Ministry of Education";
-            document.getElementById('reqDelegation').innerText = "Regional Directorate of Education Medenine";
-            document.getElementById('reqSchool').innerText = "El Halfawi Primary School";
-            document.getElementById('reqDateLabel').innerText = "Date:";
-            document.getElementById('reqFromLabel').innerText = "From Teacher:";
-            document.getElementById('teacherNameSpan').innerText = "Jamel Jouili";
-            document.getElementById('reqToLabel').innerText = "To:";
-            document.getElementById('reqSubject').innerText = "Subject: Request for digital tablets and interactive whiteboard to support AI platform";
-            document.getElementById('reqBody1').innerText = "Dear Regional Director,";
-            document.getElementById('reqBody2').innerText = "As part of activating the smart interactive digital system at El Halfawi Primary School in Medenine, and to enable students to implement innovative projects based on AI and modern communication tools, we express an urgent need to equip classrooms with digital tablets and an interactive whiteboard.";
-            document.getElementById('reqSignLabel').innerText = "Teacher's Signature:";
-            document.getElementById('teacherNameSign').innerText = "Jamel Jouili";
-            document.getElementById('printBtn').innerText = "🖨️ Print Official Request";
-
-            document.getElementById('lblTools').innerText = "🛠️ Advanced Technological Tools & Resources:";
-            document.getElementById('lblSteps').innerText = "📈 Methodological & Practical Steps (Detailed Fiche):";
-            document.getElementById('lblPedagogy').innerText = "🎯 Pedagogical Dimensions & Expected Output:";
-
         } else {
             document.getElementById('hdrTitle').innerText = "المنظومة الرقمية التفاعلية الذكية - مدرسة الحلفاوي";
             document.getElementById('hdrSub').innerText = "المندوبية الجهوية للتربية بمدنين | إشراف المعلم: جمال الجويلي | منصة التخطيط الذكي والمشاريع المبتكرة";
@@ -972,38 +996,8 @@
             document.getElementById('t4').innerText = "👥 باب المتابعة والتقييم";
             document.getElementById('t5').innerText = "🎨 محاكي الرسوم";
             document.getElementById('t6').innerText = "🔊 محاكي الصوت";
+            document.getElementById('t8').innerText = "💬 آراء وتفاعلات الزوار";
             document.getElementById('t7').innerText = "📜 المطلب الرسمي";
-            
-            document.getElementById('iTitle').innerText = "أهداف وغايات المنظومة الرقمية التفاعلية";
-            document.getElementById('iDesc1').innerText = "تهدف المنظومة إلى إحداث نقلة نوعية في الفعل التربوي بالمدرسة الابتدائية الحلفاوي بمدنين عبر دمج التكنولوجيات الحديثة والذكاء الاصطناعي في الممارسات البيداغوجية اليومية للفصل.";
-            document.getElementById('iSub').innerText = "الأهداف الغائية (إلى أين نريد الوصول بتلاميذنا؟):";
-            document.getElementById('li1').innerHTML = "• <strong>بناء الاستقلالية والتعلم الذاتي:</strong> تمكين المتعلم من استكشاف المفاهيم وبناء المعرفة عبر الألواح الرقمية التفاعلية.";
-            document.getElementById('li2').innerHTML = "• <strong>الابتكار وتوظيف الذكاء الاصطناعي:</strong> إنجاز مشاريع رقمية ومجسمات تفاعلية مستوحاة من محاكيات الذكاء الاصطناعي والتواصل الحديث.";
-            document.getElementById('li3').innerHTML = "• <strong>التمكن اللغوي والمنهجي:</strong> السيطرة على كفايات التواصل الشفوي، القراءة السردية، قواعد اللغة، والإنتاج الكتابي بدقة تامة.";
-            document.getElementById('li4').innerHTML = "• <strong>التقييم التشاركي والمتابعة المستمرة:</strong> توفير فضاء لرصد تقدم التلاميذ ودعم التعثرات بصفة آلية وفورية.";
-
-            document.getElementById('s3Head').innerText = "منصة مخططات ومشاريع السنة الثالثة ابتدائي (إصدار 2026)";
-            document.getElementById('s4Head').innerText = "منصة مخططات ومشاريع السنة الرابعة ابتدائي (إصدار 2026)";
-            document.getElementById('eTitle').innerText = "👥 باب المتابعة والتقييم المستمر للتلاميذ";
-            document.getElementById('eSub').innerText = "قائمة التلاميذ المسجلين بالمنظومة (يظهر التعديل والإضافة للأدمين فقط):";
-
-            document.getElementById('reqRepublic').innerText = "الجمهورية التونسية - وزارة التربية";
-            document.getElementById('reqDelegation').innerText = "المندوبية الجهوية للتربية بمدنين";
-            document.getElementById('reqSchool').innerText = "المدرسة الابتدائية الحلفاوي";
-            document.getElementById('reqDateLabel').innerText = "التاريخ:";
-            document.getElementById('reqFromLabel').innerText = "من المعلم:";
-            document.getElementById('teacherNameSpan').innerText = "جمال الجويلي";
-            document.getElementById('reqToLabel').innerText = "إلى السيد:";
-            document.getElementById('reqSubject').innerText = "الموضوع: مطلب توفير أجهزة تفاعلية وألواح رقمية لدعم منصة الذكاء الاصطناعي";
-            document.getElementById('reqBody1').innerText = "سيدي المندوب الجهوي،";
-            document.getElementById('reqBody2').innerText = "في إطار تفعيل المنظومة الرقمية التفاعلية الذكية بالمدرسة الابتدائية الحلفاوي بمدنين، وحرصاً منا على تمكين التلاميذ من تنفيذ المشاريع الابتكارية المعتمدة على أدوات الاتصال الحديثة والذكاء الاصطناعي، يبرز الاحتياج الماسة والملحة لتجهيز الأقسام بألواح رقمية وسبورة تفاعلية حديثة لضمان جودة التعلمات.";
-            document.getElementById('reqSignLabel').innerText = "إمضاء المعلم:";
-            document.getElementById('teacherNameSign').innerText = "جمال الجويلي";
-            document.getElementById('printBtn').innerText = "🖨️ طباعة المطلب الرسمي";
-
-            document.getElementById('lblTools').innerText = "🛠️ الأدوات والممكّنات التكنولوجية المتطورة:";
-            document.getElementById('lblSteps').innerText = "📈 مراحل الإنجاز المنهجي والتطبيقي (جذاذة موسعة):";
-            document.getElementById('lblPedagogy').innerText = "🎯 الأبعاد البيداغوجية والمنتوج المنتظر:";
         }
     }
 
