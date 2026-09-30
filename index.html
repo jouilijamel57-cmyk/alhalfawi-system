@@ -154,6 +154,7 @@
         <button class="tab-btn" onclick="switchTab('tab-s3', this)" id="t2">📊 مخططات س3</button>
         <button class="tab-btn" onclick="switchTab('tab-s4', this)" id="t3">📊 مخططات س4</button>
         <button class="tab-btn" onclick="switchTab('tab-eval', this)" id="t4">👥 المتابعة والتقييم</button>
+        <button class="tab-btn" onclick="switchTab('tab-mawarid', this)" id="t9" style="background:#f59e0b; color:#fff;">💾 الموارد <span id="mawaridCountBadge" class="badge-new" style="background:#fff;color:#000;">0</span></button>
         <button class="tab-btn" onclick="switchTab('tab-canvas', this)" id="t5">🎨 محاكي الرسوم</button>
         <button class="tab-btn" onclick="switchTab('tab-audio', this)" id="t6">🔊 محاكي الصوت</button>
         <button class="tab-btn" onclick="switchTab('tab-comments', this)" id="t8" style="background:#059669; color:#fff;">💬 آراء الزوار <span id="commentsCountBadge" class="badge-new">2</span></button>
@@ -208,6 +209,45 @@
                 <thead><tr style="background: #e2e8f0;"><th style="padding: 10px;">الاسم</th><th>المستوى</th><th>مع1</th><th>مع2</th><th>مع3</th><th>مع4</th><th>المعدل</th><th>الحالة</th><th class="admin-only">إجراء</th></tr></thead>
                 <tbody id="evalTableBody"></tbody>
             </table>
+        </div>
+    </div>
+
+    <div id="tab-mawarid" class="tab-content">
+        <div class="card" style="max-width:1200px;margin:0 auto;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:15px;">
+                <h3 style="color:#92400e;">💾 بنك الموارد الرقمية</h3>
+                <select id="mawaridFilter" style="padding:9px;border-radius:8px;border:1px solid #cbd5e1;" onchange="renderMawarid()">
+                    <option value="">كل الموارد</option>
+                    <option value="تطبيق">تطبيق / برمجية</option>
+                    <option value="فيديو">فيديو تعليمي</option>
+                    <option value="كتاب">كتاب / دليل</option>
+                    <option value="موقع">موقع مفيد</option>
+                    <option value="لعبة">لعبة تعليمية</option>
+                    <option value="ذكاء اصطناعي">ذكاء اصطناعي</option>
+                </select>
+            </div>
+            <div id="mawaridAdminPanel" class="admin-only" style="background:#fef3c7;border:2px dashed #f59e0b;padding:15px;border-radius:12px;margin-bottom:20px;display:none;">
+                <p style="font-weight:bold;color:#92400e;margin-bottom:10px;">🛠 إضافة مورد رقمي جديد - باب الموارد:</p>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">
+                    <input type="text" id="mawaridTitle" placeholder="اسم المورد - مثال: Canva للتعليم" style="padding:9px;border-radius:8px;border:1px solid #cbd5e1;">
+                    <select id="mawaridType" style="padding:9px;border-radius:8px;border:1px solid #cbd5e1;">
+                        <option value="تطبيق">تطبيق / برمجية</option>
+                        <option value="فيديو">فيديو تعليمي</option>
+                        <option value="كتاب">كتاب / دليل</option>
+                        <option value="موقع">موقع مفيد</option>
+                        <option value="لعبة">لعبة تعليمية</option>
+                        <option value="ذكاء اصطناعي">ذكاء اصطناعي</option>
+                    </select>
+                    <input type="text" id="mawaridLink" placeholder="رابط المورد https://..." style="padding:9px;border-radius:8px;border:1px solid #cbd5e1;">
+                    <input type="text" id="mawaridIcon" placeholder="أيقونة 🤖 🎨" style="padding:9px;border-radius:8px;border:1px solid #cbd5e1;max-width:100px;">
+                </div>
+                <textarea id="mawaridDesc" placeholder="وصف المورد وفائدته التربوية..." style="width:100%;margin-top:8px;padding:9px;border-radius:8px;border:1px solid #cbd5e1;height:60px;"></textarea>
+                <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+                    <button class="action-btn" style="background:#f59e0b;" onclick="addMawarid()">💾 حفظ المورد</button>
+                    <button class="action-btn" style="background:#059669;" onclick="exportMawaridCSV()">📥 تصدير Excel</button>
+                </div>
+            </div>
+            <div class="dashboard-grid" id="mawaridGrid"></div>
         </div>
     </div>
 
@@ -300,7 +340,7 @@
 <div id="projectModal" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal()">&times;</span><h2 id="modalTitle" style="color: var(--primary); margin-bottom: 10px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;"></h2><p id="modalGoal" style="font-weight: bold; margin-bottom: 10px; color: var(--accent);"></p><h4 style="margin-top: 15px;">🛠 الأدوات التكنولوجية:</h4><p id="modalTools" style="background: #f1f5f9; padding: 12px; border-radius: 8px; margin: 8px 0; font-size: 0.9rem;"></p><h4 style="margin-top: 15px;">📈 مراحل الإنجاز:</h4><ul id="modalSteps" style="margin: 8px 0; font-size: 0.92rem; line-height: 1.7; list-style: none;"></ul><h4 style="margin-top: 15px;">🎯 البعد البيداغوجي:</h4><p id="modalPedagogy" style="background: #f0fdf4; padding: 12px; border-radius: 8px; margin: 8px 0; font-size: 0.9rem; color: #166534;"></p><div style="margin-top: 15px;" id="modalAi"></div></div></div>
 
 <script>
-    const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyTR55WhtPaReoxjy_9iAyrT33oOvgPTfgTFmqPnhaaycvoa0GEhEjwDtgXnjLzjPcRLA/exec";
+    const GOOGLE_SHEET_WEBHOOK_URL = ""; // <-- ضع هنا رابط Google Apps Script Webhook لو عندك
 
     function switchTab(tabId, btnElement) {
         document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -390,48 +430,14 @@
         localStorage.setItem('alhalfawi_cloud_sync_v2', JSON.stringify(studentsData));
         renderEvalTable();
     }
-    function loadCommentsLocal() {
+    function loadComments() {
         const saved = localStorage.getItem('alhalfawi_comments_sync_v2');
         if(saved) { try { commentsData = JSON.parse(saved); } catch(e) {} }
         renderComments();
     }
-    function saveCommentsLocalOnly() {
-        localStorage.setItem('alhalfawi_comments_sync_v2', JSON.stringify(commentsData));
-    }
     function saveComments() {
-        saveCommentsLocalOnly();
+        localStorage.setItem('alhalfawi_comments_sync_v2', JSON.stringify(commentsData));
         renderComments();
-    }
-    async function loadRemoteComments() {
-        // محاولة جلب التعليقات المشتركة من Google Sheet
-        if (!GOOGLE_SHEET_WEBHOOK_URL || !GOOGLE_SHEET_WEBHOOK_URL.startsWith('http')) {
-            loadCommentsLocal();
-            return;
-        }
-        try {
-            document.getElementById('commentsListContainer').innerHTML = '<p style="text-align:center; padding:20px; color:#64748b;">⏳ جاري تحميل تعليقات الزوار من السحابة...</p>';
-            const res = await fetch(GOOGLE_SHEET_WEBHOOK_URL + "?action=read");
-            if (!res.ok) throw new Error('network');
-            const remote = await res.json();
-            if (Array.isArray(remote) && remote.length > 0) {
-                commentsData = remote.map(r => ({
-                    author: r.author || r[1] || "زائر",
-                    text: r.text || r[3] || "",
-                    date: r.date ? (typeof r.date === 'string' ? r.date : new Date(r.date).toLocaleDateString('ar-TN', {year:'numeric', month:'long', day:'numeric'})) : "",
-                    classe: r.classe || r[2] || "عام"
-                })).filter(c => c.text);
-                saveCommentsLocalOnly();
-                renderComments();
-            } else {
-                loadCommentsLocal();
-            }
-        } catch(e) {
-            console.log('Remote fetch failed, fallback to local', e);
-            loadCommentsLocal();
-        }
-    }
-    function loadComments() {
-        loadRemoteComments();
     }
 
     function toggleAdminLogin() {
@@ -524,9 +530,7 @@
         }
 
         authorInput.value = ''; textInput.value = '';
-        alert('✅ شكرا! تم نشر تعليقك وسيظهر الآن للجميع في كل أنحاء العالم بعد ثواني.');
-        // تحديث القائمة بعد ثانيتين لجلب التعليق من السحابة
-        setTimeout(() => { loadRemoteComments(); }, 2000);
+        alert('✅ شكرا! تم نشر تعليقك. سيظهر لجميع الزوار على هذا الجهاز، ولجعله يظهر للجميع على الانترنت اربطه بـ Google Sheet كما في الدليل.');
     }
 
     function deleteComment(index) {
@@ -552,6 +556,51 @@
         let link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'تلاميذ_الحلفاوي.csv'; link.click();
     }
 
+
+    // ===== باب الموارد الجديد - بدون المساس بالأصل =====
+    let mawaridData=JSON.parse(localStorage.getItem('alhalfawi_mawarid_v2_CORRECTED')||'[{"title":"ChatGPT للتعليم","type":"ذكاء اصطناعي","desc":"مساعد ذكي لتحضير الدروس والتمارين - مجاني للمعلمين","link":"https://chat.openai.com","icon":"🤖"},{"title":"Canva للتعليم","type":"تطبيق","desc":"تصميم بطاقات وملصقات تعليمية مجانا للمعلمين","link":"https://www.canva.com/education/","icon":"🎨"},{"title":"Kahoot - مسابقات تفاعلية","type":"لعبة","desc":"ألعاب ومسابقات تفاعلية داخل القسم","link":"https://kahoot.com","icon":"🎮"},{"title":"كتب الوزارة الرسمية","type":"كتاب","desc":"تحميل كتب التلميذ ودليل المعلم PDF","link":"","icon":"📚"}]');
+    function saveMawarid(){localStorage.setItem('alhalfawi_mawarid_v2_CORRECTED',JSON.stringify(mawaridData));renderMawarid();}
+    function renderMawarid(){
+        const grid=document.getElementById('mawaridGrid');if(!grid)return;
+        const f=document.getElementById('mawaridFilter')?.value||'';
+        let filtered=mawaridData.filter(m=>!f||m.type===f);
+        grid.innerHTML=filtered.map((m)=>{
+            const idx=mawaridData.indexOf(m);
+            return `<div class="unit-card" style="border-top-color:#f59e0b;">
+                <div style="font-size:2.2rem;margin-bottom:8px;">${m.icon||'💾'}</div>
+                <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:10px;font-size:0.75rem;">${m.type}</span>
+                <h3 style="margin-top:8px;color:#78350f;">${m.title}</h3>
+                <p style="font-size:0.85rem;color:#334155;margin-top:6px;line-height:1.5;">${m.desc}</p>
+                <div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;">
+                    ${m.link?`<a href="${m.link}" target="_blank" class="action-btn" style="background:#f59e0b;text-decoration:none;display:inline-block;">🚀 فتح المورد</a>`:''}
+                    ${isAdmin?`<button class="delete-btn" onclick="deleteMawarid(${idx})">حذف</button>`:''}
+                </div>
+            </div>`;
+        }).join('');
+        const b=document.getElementById('mawaridCountBadge');if(b)b.innerText=mawaridData.length;
+    }
+    function addMawarid(){
+        if(!isAdmin)return alert('للأدمين فقط!');
+        const title=document.getElementById('mawaridTitle').value.trim();
+        const type=document.getElementById('mawaridType').value;
+        const link=document.getElementById('mawaridLink').value.trim();
+        const icon=document.getElementById('mawaridIcon').value.trim()||'💾';
+        const desc=document.getElementById('mawaridDesc').value.trim();
+        if(!title)return alert('أدخل اسم المورد');
+        mawaridData.unshift({title,type,link,icon,desc});
+        saveMawarid();
+        document.getElementById('mawaridTitle').value='';document.getElementById('mawaridLink').value='';document.getElementById('mawaridDesc').value='';document.getElementById('mawaridIcon').value='';
+        alert('✅ تمت إضافة المورد');
+    }
+    function deleteMawarid(idx){if(!isAdmin)return;if(confirm('حذف هذا المورد؟')){mawaridData.splice(idx,1);saveMawarid();}}
+    function exportMawaridCSV(){let csv="اسم المورد,النوع,الوصف,الرابط\n"+mawaridData.map(m=>`"${m.title}","${m.type}","${m.desc.replace(/"/g,'""')}","${m.link}"`).join("\n");let blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='موارد_الحلفاوي.csv';a.click();}
+    
+    // Fix admin toggle to show mawared panel too
+    const originalToggle = window.toggleAdminLogin;
+    // render initially
+    setTimeout(renderMawarid, 500);
+
+    
     function initVisitorCounter() {
         let visits = localStorage.getItem('alhalfawi_visitor_count_v2');
         if (!visits) visits = 1245;
