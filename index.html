@@ -65,6 +65,7 @@
             position: absolute; top: 15px; left: 15px; background: #dc2626; color: #fff;
             padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800;
         }
+        html[dir="ltr"] .unit-badge { left: auto; right: 15px; }
         .unit-time { font-size: 0.8rem; color: var(--text-light); margin-bottom: 8px; font-weight: 600; }
         .unit-card h3 { font-size: 1.15rem; color: var(--primary); margin-bottom: 8px; font-weight: 900; }
         .unit-desc { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; margin-bottom: 12px; }
@@ -90,6 +91,7 @@
             max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.4); position: relative;
         }
         .close-btn { position: absolute; top: 15px; left: 20px; font-size: 1.5rem; font-weight: bold; cursor: pointer; color: #ef4444; }
+        html[dir="ltr"] .close-btn { left: auto; right: 20px; }
         .action-btn {
             background: var(--primary-light); color: #fff; border: none; padding: 10px 18px;
             border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.2s; margin-top: 8px;
@@ -112,6 +114,7 @@
         .admin-only { display: none; }
         .comment-box-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; margin-bottom: 15px; }
         .comment-item { background: #fff; border-right: 4px solid var(--primary-light); padding: 12px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        html[dir="ltr"] .comment-item { border-right: none; border-left: 4px solid var(--primary-light); }
         .comment-header { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-light); margin-bottom: 5px; }
         .comment-author { font-weight: bold; color: var(--primary); }
         footer.site-footer {
@@ -124,6 +127,7 @@
             color: #fbbf24; font-weight: bold; border: 1px solid rgba(251, 191, 36, 0.3);
         }
         .badge-new { background: #059669; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; margin-right: 6px; }
+        html[dir="ltr"] .badge-new { margin-right: 0; margin-left: 6px; }
         .alert-info {
             background: #dbeafe; border: 1px solid #93c5fd; color: #1e40af; padding: 12px; border-radius: 10px;
             font-size: 0.85rem; margin-bottom: 15px; line-height: 1.6;
@@ -162,36 +166,29 @@
     </div>
 
     <div id="tab-intro" class="tab-content active">
-        <div class="card" style="max-width: 950px; margin: 0 auto; border-right: 6px solid var(--primary);">
-            <h2 style="color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; font-size: 1.5rem;">أهداف وغايات المنظومة الرقمية التفاعلية</h2>
-            <p style="line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem; color: #1e293b; background: #f8fafc; padding: 12px; border-radius: 8px;">
+        <div class="card intro-card" style="max-width: 950px; margin: 0 auto; border-right: 6px solid var(--primary);">
+            <h2 id="introTitle" style="color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; font-size: 1.5rem;">أهداف وغايات المنظومة الرقمية التفاعلية</h2>
+            <p id="introDesc1" style="line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem; color: #1e293b; background: #f8fafc; padding: 12px; border-radius: 8px;">
                 تهدف المنظومة إلى إحداث نقلة نوعية في الفعل التربوي بالمدرسة الابتدائية الحلفاوي بمدنين عبر دمج التكنولوجيات الحديثة والذكاء الاصطناعي في الممارسات البيداغوجية اليومية.
             </p>
-            <h3 style="color: var(--accent); margin: 20px 0 10px 0; font-size: 1.2rem;">الأهداف الغائية:</h3>
-            <ul style="list-style: none; font-size: 0.98rem; color: #0f172a; line-height: 1.8;">
+            <h3 id="introGoalsTitle" style="color: var(--accent); margin: 20px 0 10px 0; font-size: 1.2rem;">الأهداف الغائية:</h3>
+            <ul id="introGoalsList" style="list-style: none; font-size: 0.98rem; color: #0f172a; line-height: 1.8;">
                 <li style="background: #f1f5f9; padding: 10px; border-radius: 8px; margin-bottom: 8px;">• <strong>بناء الاستقلالية:</strong> تمكين المتعلم من استكشاف المفاهيم عبر الألواح الرقمية.</li>
                 <li style="background: #f1f5f9; padding: 10px; border-radius: 8px; margin-bottom: 8px;">• <strong>الابتكار والذكاء الاصطناعي:</strong> إنجاز مشاريع رقمية ومجسمات تفاعلية.</li>
                 <li style="background: #f1f5f9; padding: 10px; border-radius: 8px; margin-bottom: 8px;">• <strong>التمكن اللغوي:</strong> السيطرة على كفايات التواصل والقراءة والقواعد.</li>
                 <li style="background: #f1f5f9; padding: 10px; border-radius: 8px; margin-bottom: 8px;">• <strong>التقييم التشاركي:</strong> رصد تقدم التلاميذ ودعم التعثرات آليا.</li>
             </ul>
-            <div class="alert-info" style="margin-top:20px">
-                <strong>💡 الجديد في هذا الإصدار:</strong><br>
-                ✅ التعليقات أصبحت محفوظة ومشتركة بين جميع الزوار (باستخدام التخزين السحابي المحلي + تصدير)<br>
-                ✅ عداد زوار ذكي يحسب كل زيارة مرة واحدة في اليوم<br>
-                ✅ لوحة تحكم للمشرف لحذف وتصدير التعليقات والتلاميذ<br>
-                ✅ لربط التعليقات بـ Google Sheets والحصول على إيميلات فورية، اتبع الدليل في الأسفل
-            </div>
         </div>
     </div>
 
-    <div id="tab-s3" class="tab-content"><h2 style="color: #fff; margin-bottom: 15px;">منصة مخططات السنة الثالثة (2026)</h2><div class="dashboard-grid" id="gridS3"></div></div>
-    <div id="tab-s4" class="tab-content"><h2 style="color: #fff; margin-bottom: 15px;">منصة مخططات السنة الرابعة (2026)</h2><div class="dashboard-grid" id="gridS4"></div></div>
+    <div id="tab-s3" class="tab-content"><h2 id="s3Title" style="color: #fff; margin-bottom: 15px;">منصة مخططات السنة الثالثة (2026)</h2><div class="dashboard-grid" id="gridS3"></div></div>
+    <div id="tab-s4" class="tab-content"><h2 id="s4Title" style="color: #fff; margin-bottom: 15px;">منصة مخططات السنة الرابعة (2026)</h2><div class="dashboard-grid" id="gridS4"></div></div>
 
     <div id="tab-eval" class="tab-content">
         <div class="card" style="max-width: 1000px; margin: 0 auto;">
-            <h3 style="color: var(--primary); margin-bottom: 8px;">👥 باب المتابعة والتقييم المستمر</h3>
+            <h3 id="evalTitle" style="color: var(--primary); margin-bottom: 8px;">👥 باب المتابعة والتقييم المستمر</h3>
             <div id="adminControls" class="admin-only" style="gap: 8px; flex-wrap: wrap; margin-bottom: 20px; background: #eff6ff; border: 2px dashed var(--primary-light); padding: 15px; border-radius: 12px; align-items: center;">
-                <p style="width: 100%; font-weight: bold; color: var(--primary); margin-bottom: 5px;">🛠 لوحة تحكم المشرف:</p>
+                <p id="adminPanelTitle" style="width: 100%; font-weight: bold; color: var(--primary); margin-bottom: 5px;">🛠 لوحة تحكم المشرف:</p>
                 <select id="st-name-select" style="padding: 10px; border-radius: 8px; flex: 2; min-width: 180px; border: 1px solid #cbd5e1;"><option value="">-- اختر لتعديله --</option></select>
                 <input type="text" id="st-new-name" placeholder="اسم جديد..." style="padding: 9px; border-radius: 8px; flex: 1.5; min-width: 150px; border: 1px solid #cbd5e1;">
                 <select id="st-level" style="padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;">
@@ -202,11 +199,11 @@
                 <input type="number" id="st-m2" placeholder="مع2" style="width: 60px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20">
                 <input type="number" id="st-m3" placeholder="مع3" style="width: 60px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20">
                 <input type="number" id="st-m4" placeholder="مع4" style="width: 60px; padding: 9px; border-radius: 8px; border: 1px solid #cbd5e1;" min="0" max="20">
-                <button class="action-btn" onclick="addStudentEval()">حفظ</button>
-                <button class="action-btn" style="background: var(--success);" onclick="exportStudentsCSV()">📥 تصدير Excel</button>
+                <button class="action-btn" id="stSaveBtn" onclick="addStudentEval()">حفظ</button>
+                <button class="action-btn" id="stExportBtn" style="background: var(--success);" onclick="exportStudentsCSV()">📥 تصدير Excel</button>
             </div>
             <table style="width: 100%; text-align: right; border-collapse: collapse; font-size: 0.9rem;">
-                <thead><tr style="background: #e2e8f0;"><th style="padding: 10px;">الاسم</th><th>المستوى</th><th>مع1</th><th>مع2</th><th>مع3</th><th>مع4</th><th>المعدل</th><th>الحالة</th><th class="admin-only">إجراء</th></tr></thead>
+                <thead><tr style="background: #e2e8f0;"><th id="thName" style="padding: 10px;">الاسم</th><th id="thLevel">المستوى</th><th id="thM1">مع1</th><th id="thM2">مع2</th><th id="thM3">مع3</th><th id="thM4">مع4</th><th id="thAvg">المعدل</th><th id="thStatus">الحالة</th><th id="thAction" class="admin-only">إجراء</th></tr></thead>
                 <tbody id="evalTableBody"></tbody>
             </table>
         </div>
@@ -215,35 +212,40 @@
     <div id="tab-mawarid" class="tab-content">
         <div class="card" style="max-width:1200px;margin:0 auto;">
             <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:15px;">
-                <h3 style="color:#92400e;">💾 بنك الموارد الرقمية</h3>
+                <h3 id="mawaridHeaderTitle" style="color:#92400e;">💾 بنك الموارد الرقمية وتحميل الملفات المحلية</h3>
                 <select id="mawaridFilter" style="padding:9px;border-radius:8px;border:1px solid #cbd5e1;" onchange="renderMawarid()">
                     <option value="">كل الموارد</option>
                     <option value="تطبيق">تطبيق / برمجية</option>
                     <option value="فيديو">فيديو تعليمي</option>
-                    <option value="كتاب">كتاب / دليل</option>
+                    <option value="كتاب">كتاب / دليل / ملف</option>
                     <option value="موقع">موقع مفيد</option>
                     <option value="لعبة">لعبة تعليمية</option>
                     <option value="ذكاء اصطناعي">ذكاء اصطناعي</option>
                 </select>
             </div>
-            <div id="mawaridAdminPanel" class="admin-only" style="background:#fef3c7;border:2px dashed #f59e0b;padding:15px;border-radius:12px;margin-bottom:20px;display:none;">
-                <p style="font-weight:bold;color:#92400e;margin-bottom:10px;">🛠 إضافة مورد رقمي جديد - باب الموارد:</p>
-                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">
-                    <input type="text" id="mawaridTitle" placeholder="اسم المورد - مثال: Canva للتعليم" style="padding:9px;border-radius:8px;border:1px solid #cbd5e1;">
+            <div id="mawaridAdminPanel" class="admin-only" style="background:#fef3c7;border:2px dashed #f59e0b;padding:15px;border-radius:12px;margin-bottom:20px;">
+                <p style="font-weight:bold;color:#92400e;margin-bottom:10px;">🛠 إضافة مورد رقمي أو تحميل ملف وتخزينه في Local Storage:</p>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
+                    <input type="text" id="mawaridTitle" placeholder="اسم المورد - مثال: دليل المعلم" style="padding:9px;border-radius:8px;border:1px solid #cbd5e1;">
                     <select id="mawaridType" style="padding:9px;border-radius:8px;border:1px solid #cbd5e1;">
+                        <option value="كتاب">كتاب / دليل / ملف</option>
                         <option value="تطبيق">تطبيق / برمجية</option>
                         <option value="فيديو">فيديو تعليمي</option>
-                        <option value="كتاب">كتاب / دليل</option>
                         <option value="موقع">موقع مفيد</option>
                         <option value="لعبة">لعبة تعليمية</option>
                         <option value="ذكاء اصطناعي">ذكاء اصطناعي</option>
                     </select>
-                    <input type="text" id="mawaridLink" placeholder="رابط المورد https://..." style="padding:9px;border-radius:8px;border:1px solid #cbd5e1;">
-                    <input type="text" id="mawaridIcon" placeholder="أيقونة 🤖 🎨" style="padding:9px;border-radius:8px;border:1px solid #cbd5e1;max-width:100px;">
+                    <input type="text" id="mawaridLink" placeholder="أو رابط خارجي https://..." style="padding:9px;border-radius:8px;border:1px solid #cbd5e1;">
+                    <input type="text" id="mawaridIcon" placeholder="أيقونة 📁 📚 🤖" style="padding:9px;border-radius:8px;border:1px solid #cbd5e1;">
                 </div>
-                <textarea id="mawaridDesc" placeholder="وصف المورد وفائدته التربوية..." style="width:100%;margin-top:8px;padding:9px;border-radius:8px;border:1px solid #cbd5e1;height:60px;"></textarea>
+                <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                    <label id="fileUploadLabel" style="font-size:0.85rem; font-weight:bold; color:#92400e;">اختر ملفاً من جهازك (سيتم حفظه في Local Storage):</label>
+                    <input type="file" id="mawaridFileInput" style="padding:5px; background:#fff; border-radius:8px; border:1px solid #cbd5e1; font-size:0.85rem;" onchange="handleFileLocalUpload(event)">
+                    <span id="fileNameDisplay" style="font-size:0.8rem; color:#059669; font-weight:bold;"></span>
+                </div>
+                <textarea id="mawaridDesc" placeholder="وصف المورد وفائدته التربوية..." style="width:100%;margin-top:10px;padding:9px;border-radius:8px;border:1px solid #cbd5e1;height:60px;"></textarea>
                 <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
-                    <button class="action-btn" style="background:#f59e0b;" onclick="addMawarid()">💾 حفظ المورد</button>
+                    <button class="action-btn" style="background:#f59e0b;" onclick="addMawarid()">💾 حفظ المورد في التخزين المحلي</button>
                     <button class="action-btn" style="background:#059669;" onclick="exportMawaridCSV()">📥 تصدير Excel</button>
                 </div>
             </div>
@@ -254,15 +256,15 @@
     <div id="tab-canvas" class="tab-content">
         <div class="simulator-grid">
             <div class="card">
-                <h3>🎨 ورشة الرسومات الذكية</h3>
-                <label style="font-size:0.9rem; font-weight:bold; display:block; margin: 10px 0 5px;">اختر موضوع الورشة:</label>
+                <h3 id="canvasWorkshopTitle">🎨 ورشة الرسومات الذكية</h3>
+                <label id="canvasSelectLabel" style="font-size:0.9rem; font-weight:bold; display:block; margin: 10px 0 5px;">اختر موضوع الورشة:</label>
                 <select id="draw-topic" style="width:100%; padding: 10px; border-radius: 8px; margin-bottom: 12px;">
                     <option value="1">مشروع البيئة الذكية</option>
                     <option value="2">القصة التفاعلية 3D</option>
                     <option value="3">المجسم الرقمي</option>
                 </select>
-                <button class="action-btn" onclick="generateDrawing()">توليد الرسم</button>
-                <button class="action-btn" style="background:var(--success);" onclick="downloadCanvas()">تنزيل PNG</button>
+                <button class="action-btn" id="drawGenBtn" onclick="generateDrawing()">توليد الرسم</button>
+                <button class="action-btn" id="drawDownloadBtn" style="background:var(--success);" onclick="downloadCanvas()">تنزيل PNG</button>
             </div>
             <div><canvas id="digitalCanvas"></canvas></div>
         </div>
@@ -270,19 +272,19 @@
 
     <div id="tab-audio" class="tab-content">
         <div class="card" style="max-width: 700px; margin: 0 auto;">
-            <h3>🔊 محاكي النطق بالفصحى</h3>
+            <h3 id="audioSimTitle">🔊 محاكي النطق بالفصحى</h3>
             <textarea id="tts-text" style="width: 100%; height: 120px; padding: 12px; border-radius: 10px; margin: 12px 0; border: 1px solid #cbd5e1;" placeholder="أدخل النص العربي..."></textarea>
             <div style="display:flex; gap:10px;">
-                <button class="action-btn" onclick="speakText()">قراءة النص</button>
-                <button class="action-btn" style="background:#dc2626;" onclick="window.speechSynthesis.cancel()">إيقاف</button>
+                <button class="action-btn" id="speakBtn" onclick="speakText()">قراءة النص</button>
+                <button class="action-btn" id="stopSpeakBtn" style="background:#dc2626;" onclick="window.speechSynthesis.cancel()">إيقاف</button>
             </div>
         </div>
     </div>
 
     <div id="tab-comments" class="tab-content">
         <div class="card" style="max-width: 850px; margin: 0 auto;">
-            <h3 style="color: var(--primary); margin-bottom: 10px;">💬 ركن آراء وتفاعلات الأولياء والزوار</h3>
-            <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 15px;">نرحب بملاحظاتكم، آراءكم تهمنا لتطوير العمل التربوي:</p>
+            <h3 id="commentsTitle" style="color: var(--primary); margin-bottom: 10px;">💬 ركن آراء وتفاعلات الأولياء والزوار</h3>
+            <p id="commentsSub" style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 15px;">نرحب بملاحظاتكم، آراءكم تهمنا لتطوير العمل التربوي:</p>
             
             <div class="comment-box-card">
                 <div style="display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap">
@@ -297,7 +299,7 @@
                 </div>
                 <textarea id="commentText" placeholder="اكتب رأيك أو تعليقك هنا..." style="width: 100%; height: 90px; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; margin-bottom: 10px;"></textarea>
                 <div style="display:flex; gap:8px; justify-content:space-between; align-items:center; flex-wrap:wrap">
-                    <button class="action-btn" onclick="addNewComment()" style="background:var(--success); padding:12px 25px;">📤 نشر التعليق</button>
+                    <button class="action-btn" id="publishCommentBtn" onclick="addNewComment()" style="background:var(--success); padding:12px 25px;">📤 نشر التعليق</button>
                     <div class="admin-only">
                         <button class="action-btn" style="background:#64748b;" onclick="exportCommentsCSV()">📥 تصدير التعليقات Excel</button>
                         <button class="delete-btn" style="padding:10px 15px;" onclick="clearAllComments()">🗑 مسح الكل</button>
@@ -306,41 +308,216 @@
             </div>
 
             <div id="commentsListContainer" style="margin-top: 20px;"></div>
-
-            <div class="alert-info" style="margin-top:20px; background:#fef3c7; border-color:#fcd34d; color:#92400e;">
-                <strong>🔧 كيف تجعل التعليقات تظهر للجميع حتى بعد إغلاق المتصفح؟</strong><br>
-                حاليا التعليقات محفوظة في متصفح كل زائر. للربط الحقيقي المشترك:<br>
-                1. استعمل خدمة مجانية مثل <code>formspree.io</code> أو <code>Google Apps Script</code><br>
-                2. ضع رابط الـ Webhook في المتغير <code>GOOGLE_SHEET_WEBHOOK_URL</code> أسفل الكود<br>
-                3. سيتم إرسال كل تعليق إلى Google Sheet + إيميلك تلقائيا
-            </div>
         </div>
     </div>
 
     <div id="tab-request" class="tab-content">
         <div class="official-doc">
-            <div class="doc-header"><h2>الجمهورية التونسية - وزارة التربية</h2><h3>المندوبية الجهوية للتربية بمدنين</h3><h4>المدرسة الابتدائية الحلفاوي</h4></div>
-            <p style="text-align: left;"><strong>التاريخ:</strong> 29 سبتمبر 2026</p>
-            <p><strong>من المعلم:</strong> جمال الجويلي</p>
-            <p><strong>إلى السيد:</strong> المندوب الجهوي للتربية بمدنين</p><br>
-            <h3 style="text-align: center; color: var(--primary);">الموضوع: مطلب توفير أجهزة تفاعلية وألواح رقمية</h3><br>
-            <p>سيدي المندوب الجهوي،</p>
-            <p>في إطار تفعيل المنظومة الرقمية التفاعلية الذكية بالمدرسة الابتدائية الحلفاوي بمدنين، وحرصاً منا على تمكين التلاميذ من تنفيذ المشاريع الابتكارية، يبرز الاحتياج الماسة لتجهيز الأقسام بألواح رقمية وسبورة تفاعلية حديثة.</p><br>
-            <p style="text-align: left;"><strong>إمضاء المعلم:</strong> جمال الجويلي</p><br>
-            <button class="action-btn" style="background:var(--success); font-size:1rem;" onclick="window.print()">🖨 طباعة المطلب الرسمي</button>
+            <div class="doc-header"><h2 id="docGov">الجمهورية التونسية - وزارة التربية</h2><h3 id="docReg">المندوبية الجهوية للتربية بمدنين</h3><h4 id="docSchool">المدرسة الابتدائية الحلفاوي</h4></div>
+            <p style="text-align: left;"><strong id="docDateLabel">التاريخ:</strong> 29 سبتمبر 2026</p>
+            <p><strong id="docFromLabel">من المعلم:</strong> جمال الجويلي</p>
+            <p><strong id="docToLabel">إلى السيد:</strong> المندوب الجهوي للتربية بمدنين</p><br>
+            <h3 id="docSubj" style="text-align: center; color: var(--primary);">الموضوع: مطلب توفير أجهزة تفاعلية وألواح رقمية</h3><br>
+            <p id="docP1">سيدي المندوب الجهوي،</p>
+            <p id="docP2">في إطار تفعيل المنظومة الرقمية التفاعلية الذكية بالمدرسة الابتدائية الحلفاوي بمدنين، وحرصاً منا على تمكين التلاميذ من تنفيذ المشاريع الابتكارية، يبرز الاحتياج الماسة لتجهيز الأقسام بألواح رقمية وسبورة تفاعلية حديثة.</p><br>
+            <p style="text-align: left;"><strong id="docSign">إمضاء المعلم:</strong> جمال الجويلي</p><br>
+            <button class="action-btn" id="printDocBtn" style="background:var(--success); font-size:1rem;" onclick="window.print()">🖨 طباعة المطلب الرسمي</button>
         </div>
     </div>
 
     <footer class="site-footer">
-        <div>المدرسة الابتدائية الحلفاوي بمدنين © 2026 - إشراف المعلم: جمال الجويلي</div>
+        <div id="footerText">المدرسة الابتدائية الحلفاوي بمدنين © 2026 - إشراف المعلم: جمال الجويلي</div>
         <div class="visitor-counter" id="visitorCounterContainer">👁 عدد زوار الموقع: <span id="visitorCount">1,245</span> | 💬 التعليقات: <span id="visitorCommentCount">0</span></div>
     </footer>
 </div>
 
-<div id="projectModal" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal()">&times;</span><h2 id="modalTitle" style="color: var(--primary); margin-bottom: 10px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;"></h2><p id="modalGoal" style="font-weight: bold; margin-bottom: 10px; color: var(--accent);"></p><h4 style="margin-top: 15px;">🛠 الأدوات التكنولوجية:</h4><p id="modalTools" style="background: #f1f5f9; padding: 12px; border-radius: 8px; margin: 8px 0; font-size: 0.9rem;"></p><h4 style="margin-top: 15px;">📈 مراحل الإنجاز:</h4><ul id="modalSteps" style="margin: 8px 0; font-size: 0.92rem; line-height: 1.7; list-style: none;"></ul><h4 style="margin-top: 15px;">🎯 البعد البيداغوجي:</h4><p id="modalPedagogy" style="background: #f0fdf4; padding: 12px; border-radius: 8px; margin: 8px 0; font-size: 0.9rem; color: #166534;"></p><div style="margin-top: 15px;" id="modalAi"></div></div></div>
+<div id="projectModal" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal()">&times;</span><h2 id="modalTitle" style="color: var(--primary); margin-bottom: 10px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;"></h2><p id="modalGoal" style="font-weight: bold; margin-bottom: 10px; color: var(--accent);"></p><h4 id="modalToolsHeader" style="margin-top: 15px;">🛠 الأدوات التكنولوجية:</h4><p id="modalTools" style="background: #f1f5f9; padding: 12px; border-radius: 8px; margin: 8px 0; font-size: 0.9rem;"></p><h4 id="modalStepsHeader" style="margin-top: 15px;">📈 مراحل الإنجاز:</h4><ul id="modalSteps" style="margin: 8px 0; font-size: 0.92rem; line-height: 1.7; list-style: none;"></ul><h4 id="modalPedagogyHeader" style="margin-top: 15px;">🎯 البعد البيداغوجي:</h4><p id="modalPedagogy" style="background: #f0fdf4; padding: 12px; border-radius: 8px; margin: 8px 0; font-size: 0.9rem; color: #166534;"></p><div style="margin-top: 15px;" id="modalAi"></div></div></div>
 
 <script>
-    const GOOGLE_SHEET_WEBHOOK_URL = ""; // <-- ضع هنا رابط Google Apps Script Webhook لو عندك
+    const GOOGLE_SHEET_WEBHOOK_URL = "";
+
+    // Translations Dictionary
+    const translations = {
+        ar: {
+            hdrTitle: "المنظومة الرقمية التفاعلية الذكية - مدرسة الحلفاوي",
+            hdrSub: "المندوبية الجهوية للتربية بمدنين | إشراف المعلم: جمال الجويلي | منصة التخطيط الذكي والمشاريع المبتكرة",
+            t1: "🌟 أهداف المشروع",
+            t2: "📊 مخططات س3",
+            t3: "📊 مخططات س4",
+            t4: "👥 المتابعة والتقييم",
+            t5: "🎨 محاكي الرسوم",
+            t6: "🔊 محاكي الصوت",
+            t7: "📜 المطلب الرسمي",
+            t8: "💬 آراء الزوار",
+            t9: "💾 الموارد",
+            adminLoginBtn: "🔐 دخول المشرف",
+            introTitle: "أهداف وغايات المنظومة الرقمية التفاعلية",
+            introDesc1: "تهدف المنظومة إلى إحداث نقلة نوعية في الفعل التربوي بالمدرسة الابتدائية الحلفاوي بمدنين عبر دمج التكنولوجيات الحديثة والذكاء الاصطناعي في الممارسات البيداغوجية اليومية.",
+            introGoalsTitle: "الأهداف الغائية:",
+            s3Title: "منصة مخططات السنة الثالثة (2026)",
+            s4Title: "منصة مخططات السنة الرابعة (2026)",
+            evalTitle: "👥 باب المتابعة والتقييم المستمر",
+            adminPanelTitle: "🛠 لوحة تحكم المشرف:",
+            stSaveBtn: "حفظ",
+            stExportBtn: "📥 تصدير Excel",
+            thName: "الاسم", thLevel: "المستوى", thM1: "مع1", thM2: "مع2", thM3: "مع3", thM4: "مع4", thAvg: "المعدل", thStatus: "الحالة", thAction: "إجراء",
+            mawaridHeaderTitle: "💾 بنك الموارد الرقمية وتحميل الملفات المحلية",
+            canvasWorkshopTitle: "🎨 ورشة الرسومات الذكية",
+            canvasSelectLabel: "اختر موضوع الورشة:",
+            drawGenBtn: "توليد الرسم",
+            drawDownloadBtn: "تنزيل PNG",
+            audioSimTitle: "🔊 محاكي النطق بالفصحى",
+            speakBtn: "قراءة النص",
+            stopSpeakBtn: "إيقاف",
+            commentsTitle: "💬 ركن آراء وتفاعلات الأولياء والزوار",
+            commentsSub: "نرحب بملاحظاتكم، آراءكم تهمنا لتطوير العمل التربوي:",
+            publishCommentBtn: "📤 نشر التعليق",
+            docGov: "الجمهورية التونسية - وزارة التربية",
+            docReg: "المندوبية الجهوية للتربية بمدنين",
+            docSchool: "المدرسة الابتدائية الحلفاوي",
+            docDateLabel: "التاريخ:",
+            docFromLabel: "من المعلم:",
+            docToLabel: "إلى السيد:",
+            docSubj: "الموضوع: مطلب توفير أجهزة تفاعلية وألواح رقمية",
+            docP1: "سيدي المندوب الجهوي،",
+            docP2: "في إطار تفعيل المنظومة الرقمية التفاعلية الذكية بالمدرسة الابتدائية الحلفاوي بمدنين، وحرصاً منا على تمكين التلاميذ من تنفيذ المشاريع الابتكارية، يبرز الاحتياج الماسة لتجهيز الأقسام بألواح رقمية وسبورة تفاعلية حديثة.",
+            docSign: "إمضاء المعلم:",
+            printDocBtn: "🖨 طباعة المطلب الرسمي",
+            footerText: "المدرسة الابتدائية الحلفاوي بمدنين © 2026 - إشراف المعلم: جمال الجويلي",
+            modalToolsHeader: "🛠 الأدوات التكنولوجية:",
+            modalStepsHeader: "📈 مراحل الإنجاز:",
+            modalPedagogyHeader: "🎯 البعد البيداغوجي:"
+        },
+        fr: {
+            hdrTitle: "Système Numérique Interactif Intelligent - École Hfaoui",
+            hdrSub: "Commissariat Régional à l'Éducation de Médenine | Enseignant : Jamel Jouili | Planification intelligente et projets innovants",
+            t1: "🌟 Objectifs",
+            t2: "📊 Plans 3ème A.",
+            t3: "📊 Plans 4ème A.",
+            t4: "👥 Suivi & Évaluation",
+            t5: "🎨 Simulateur 2D",
+            t6: "🔊 Simulateur vocal",
+            t7: "📜 Demande officielle",
+            t8: "💬 Avis visiteurs",
+            t9: "💾 Ressources",
+            adminLoginBtn: "🔐 Connexion Admin",
+            introTitle: "Objectifs du Système Numérique Interactif",
+            introDesc1: "Le système vise à révolutionner l'action pédagogique à l'école primaire Hfaoui à Médenine en intégrant les technologies modernes et l'intelligence artificielle dans les pratiques quotidiennes.",
+            introGoalsTitle: "Objectifs finaux :",
+            s3Title: "Plateforme des plans - 3ème année (2026)",
+            s4Title: "Plateforme des plans - 4ème année (2026)",
+            evalTitle: "👥 Suivi et Évaluation Continue",
+            adminPanelTitle: "🛠 Panneau d'administration :",
+            stSaveBtn: "Enregistrer",
+            stExportBtn: "📥 Exporter Excel",
+            thName: "Nom", thLevel: "Niveau", thM1: "M1", thM2: "M2", thM3: "M3", thM4: "M4", thAvg: "Moyenne", thStatus: "Statut", thAction: "Action",
+            mawaridHeaderTitle: "💾 Banque de ressources numériques et stockage local",
+            canvasWorkshopTitle: "🎨 Atelier de dessin intelligent",
+            canvasSelectLabel: "Choisissez le sujet :",
+            drawGenBtn: "Générer le dessin",
+            drawDownloadBtn: "Télécharger PNG",
+            audioSimTitle: "🔊 Simulateur de prononciation",
+            speakBtn: "Lire le texte",
+            stopSpeakBtn: "Arrêter",
+            commentsTitle: "💬 Espace des avis et des parents",
+            commentsSub: "Vos avis nous intéressent pour améliorer le travail éducatif :",
+            publishCommentBtn: "📤 Publier le commentaire",
+            docGov: "République Tunisienne - Ministère de l'Éducation",
+            docReg: "Commissariat Régional à l'Éducation de Médenine",
+            docSchool: "École Primaire Hfaoui",
+            docDateLabel: "Date :",
+            docFromLabel: "De l'enseignant :",
+            docToLabel: "À l'attention de :",
+            docSubj: "Objet : Demande de tablettes numériques et d'équipements interactifs",
+            docP1: "Monsieur le Délégué Régional,",
+            docP2: "Dans le cadre de la mise en œuvre du système numérique interactif à l'école primaire Hfaoui de Médenine, et afin de permettre aux élèves de réaliser des projets innovants, le besoin d'équiper les classes en tablettes et tableaux interactifs est primordial.",
+            docSign: "Signature de l'enseignant :",
+            printDocBtn: "🖨 Imprimer la demande officielle",
+            footerText: "École Primaire Hfaoui - Médenine © 2026 - Enseignant : Jamel Jouili",
+            modalToolsHeader: "🛠 Outils technologiques :",
+            modalStepsHeader: "📈 Étapes de réalisation :",
+            modalPedagogyHeader: "🎯 Dimension pédagogique :"
+        },
+        en: {
+            hdrTitle: "Smart Interactive Digital System - Hfaoui School",
+            hdrSub: "Regional Directorate of Education in Medenine | Teacher: Jamel Jouili | Smart Planning & Innovative Projects",
+            t1: "🌟 Objectives",
+            t2: "📊 3rd Grade Plans",
+            t3: "📊 4th Grade Plans",
+            t4: "👥 Evaluation",
+            t5: "🎨 Drawing Sim",
+            t6: "🔊 Audio Sim",
+            t7: "📜 Official Request",
+            t8: "💬 Visitor Reviews",
+            t9: "💾 Resources",
+            adminLoginBtn: "🔐 Admin Login",
+            introTitle: "Goals of the Interactive Digital System",
+            introDesc1: "The system aims to create a qualitative shift in educational practice at Hfaoui Primary School in Medenine by integrating modern technologies and AI into daily pedagogy.",
+            introGoalsTitle: "Core Goals:",
+            s3Title: "3rd Grade Plan Platform (2026)",
+            s4Title: "4th Grade Plan Platform (2026)",
+            evalTitle: "👥 Continuous Follow-up & Evaluation",
+            adminPanelTitle: "🛠 Admin Control Panel:",
+            stSaveBtn: "Save",
+            stExportBtn: "📥 Export Excel",
+            thName: "Name", thLevel: "Level", thM1: "M1", thM2: "M2", thM3: "M3", thM4: "M4", thAvg: "Average", thStatus: "Status", thAction: "Action",
+            mawaridHeaderTitle: "💾 Digital Resources Bank & Local Storage",
+            canvasWorkshopTitle: "🎨 Smart Drawing Workshop",
+            canvasSelectLabel: "Choose workshop topic:",
+            drawGenBtn: "Generate Drawing",
+            drawDownloadBtn: "Download PNG",
+            audioSimTitle: "🔊 Classical Arabic Speech Simulator",
+            speakBtn: "Read Text",
+            stopSpeakBtn: "Stop",
+            commentsTitle: "💬 Parents & Visitors Reviews",
+            commentsSub: "Your feedback is important to improve educational work:",
+            publishCommentBtn: "📤 Post Comment",
+            docGov: "Republic of Tunisia - Ministry of Education",
+            docReg: "Regional Directorate of Education in Medenine",
+            docSchool: "Hfaoui Primary School",
+            docDateLabel: "Date:",
+            docFromLabel: "From Teacher:",
+            docToLabel: "To:",
+            docSubj: "Subject: Request for interactive devices and digital tablets",
+            docP1: "Dear Regional Director,",
+            docP2: "As part of activating the smart interactive digital system at Hfaoui Primary School in Medenine, and to enable students to implement innovative projects, equipping classrooms with digital tablets and interactive whiteboards is essential.",
+            docSign: "Teacher Signature:",
+            printDocBtn: "🖨 Print Official Request",
+            footerText: "Hfaoui Primary School, Medenine © 2026 - Teacher: Jamel Jouili",
+            modalToolsHeader: "🛠 Technological Tools:",
+            modalStepsHeader: "📈 Implementation Steps:",
+            modalPedagogyHeader: "🎯 Pedagogical Dimension:"
+        }
+    };
+
+    function changeLang(lang) {
+        const htmlRoot = document.getElementById('htmlRoot');
+        if (lang === 'ar') {
+            htmlRoot.setAttribute('lang', 'ar');
+            htmlRoot.setAttribute('dir', 'rtl');
+        } else {
+            htmlRoot.setAttribute('lang', lang);
+            htmlRoot.setAttribute('dir', 'ltr');
+        }
+
+        const dict = translations[lang];
+        if(!dict) return;
+
+        Object.keys(dict).forEach(key => {
+            const el = document.getElementById(key);
+            if(el) {
+                if(key === 't8') {
+                    const count = document.getElementById('commentsCountBadge').outerHTML;
+                    el.innerHTML = dict[key] + ' ' + count;
+                } else if(key === 't9') {
+                    const count = document.getElementById('mawaridCountBadge').outerHTML;
+                    el.innerHTML = dict[key] + ' ' + count;
+                } else {
+                    el.innerText = dict[key];
+                }
+            }
+        });
+    }
 
     function switchTab(tabId, btnElement) {
         document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -365,313 +542,460 @@
         {id:2,title:"الوحدة 2: التضامن",time:"3 أسابيع + إدماج",desc:"مكتبة القسم، الترابط الأسري.",features:["💬 حكايات تضامنية","📖 بنية سردية معقدة","⚙ المفعول به"],project:"المكتبة الرقمية الذكية",tools:"قاعدة بيانات، QR Code.",steps:["1. تصنيف الكتب.","2. توليد QR.","3. نظام إعارة رقمي.","4. تقييم المقروء."],pedagogy:"حب المطالعة وتنظيم العمل.",ai:"Smart library QR system."},
         {id:3,title:"الوحدة 3: البيئة",time:"3 أسابيع + إدماج",desc:"حماية الطبيعة، غراسة الأشجار.",features:["💬 وصف البيئة","📖 نصوص بيئية","⚙ النعت والحال"],project:"المحاكي البيئي الذكي",tools:"محاكي بيئي، بيانات مناخية.",steps:["1. رصد حاجيات الحديقة.","2. محاكاة نمو النباتات.","3. مطوية توعوية.","4. غراسة وتوثيق."],pedagogy:"التربية البيئية والوصف الدقيق.",ai:"Eco-sensor simulation."},
         {id:4,title:"الوحدة 4: الصحة والرفاه",time:"3 أسابيع + إدماج",desc:"التغذية، الوقاية، الرعاية.",features:["💬 حوار طبي","📖 تحليل النص السردي","⚙ أفعال القول"],project:"المختبر الطبي الرقمي",tools:"استبيان صحي، لوحات.",steps:["1. استبيان غذائي.","2. تحليل المعطيات.","3. مسرحية طبيب ومريض.","4. نشر النصائح."],pedagogy:"مهارات الحوار الطبي.",ai:"Medical lab simulation."},
-        {id:5,title:"الوحدة 5: الثقافة",time:"3 أسابيع + إدماج",desc:"الرحلات، الاستكشاف.",features:["💬 التعبير عن الاحتمال","📖 مغامرات","⚙ النواسخ الفعلية"],project:"مولد القصص بالذكاء الاصطناعي",tools:"نموذج لغوي للأطفال.",steps:["1. عصف ذهني.","2. توليد المغامرة بالذكاء الاصطناعي.","3. تدقيق لغوي.","4. كتاب رقمي."],pedagogy:"الإبداع الأدبي بالذكاء الاصطناعي.",ai:"AI Story Weaver."},
-        {id:6,title:"الوحدة 6: التضامن 2",time:"3 أسابيع + إدماج",desc:"التعاون في الأزمات.",features:["💬 حكايات الإغاثة","📖 نصوص تضامنية","⚙ الصحيح السالم"],project:"منصة التضامن الرقمية",tools:"منصة مصغرة، شبكة داخلية.",steps:["1. تحديد الاحتياجات.","2. حملة تضامن رقمية.","3. فيديو توعوي.","4. توثيق النتائج."],pedagogy:"قيم التضامن والمواطنة.",ai:"Solidarity hub builder."},
-        {id:7,title:"الوحدة 7: الاختراعات",time:"3 أسابيع + إدماج",desc:"العلوم والتكنولوجيا.",features:["💬 التعجب والتعليل","📖 نصوص الاختراعات","⚙ المضارع المنصوب والمجزوم"],project:"معرض الابتكار الرقمي",tools:"مجسمات، عروض تقديمية.",steps:["1. فكرة جهاز يحل مشكلة.","2. عرض تقديمي.","3. دفاع أمام اللجنة.","4. براءة اختراع رقمية."],pedagogy:"الفكر العلمي والابتكاري.",ai:"Invention expo generator."},
-        {id:8,title:"الوحدة 8: الختام",time:"3 أسابيع + إدماج",desc:"حصاد المشاريع، التحضير للارتقاء.",features:["💬 التمني والالتماس","📖 نصوص ختامية","⚙ إدماج شامل"],project:"المؤتمر السنوي للمشاريع",tools:"منصة مؤتمرات افتراضية.",steps:["1. تجميع المشاريع.","2. كتابة كلمات العرض.","3. مؤتمر بحضور الأولياء.","4. جوائز التميز."],pedagogy:"تقييم ختامي والتواصل الخطابي.",ai:"Annual summit showcase."}
+        {id:5,title:"الوحدة 5: الثقافة",time:"3 أسابيع + إدماج",desc:"الرحلات، الاستكشاف.",features:["💬 التعبير عن الاحتمال","📖 مغامرات","⚙ النواسخ الفعلية"],project:"مولد الرحلات الافتراضية",tools:"خرائط رقمية، ألواح.",steps:["1. تخطيط رحلة افتراضية.","2. كتابة برنامج الرحلة.","3. العرض الجغرافي.","4. تقييم المكاسب."],pedagogy:"استكشاف التراث والجغرافيا.",ai:"Virtual excursion generator."}
     ];
 
-    function renderDashboard(units, gridId) {
-        document.getElementById(gridId).innerHTML = units.map(u => `
-            <div class="unit-card">
-                <span class="unit-badge">وحدة ${u.id}</span>
-                <div class="unit-time">${u.time}</div>
-                <h3>${u.title}</h3>
-                <p class="unit-desc">${u.desc}</p>
-                <div class="unit-features">${u.features.map(f => `<div>• ${f}</div>`).join('')}</div>
-                <div class="ai-project-box"><strong>🚀 المشروع:</strong> ${u.project}</div>
-                <button class="card-footer-btn" onclick="openModal(${u.id}, '${gridId}')">عرض التفاصيل الكامل ←</button>
-            </div>
-        `).join('');
+    let mawaridList = JSON.parse(localStorage.getItem('mawaridList') || JSON.stringify([
+        {id: 1, title: "دليل المعلم لتكنولوجيا التعليم", type: "كتاب", link: "#", fileData: "", fileName: "", icon: "📚", desc: "دليل شامل لتشغيل الألواح الرقمية والبرمجيات البيداغوجية."},
+        {id: 2, title: "منصة Scratch Junior", type: "تطبيق", link: "https://www.scratchjr.org/", fileData: "", fileName: "", icon: "💻", desc: "برمجة مرئية مبسطة لتلاميذ الابتدائي لتنمية التفكير المنطقي."},
+        {id: 3, title: "قصص الواقع المعزز التفاعلية", type: "فيديو", link: "#", fileData: "", fileName: "", icon: "🎬", desc: "فيديو توضيحي لكيفية دمج الواقع المعزز في قراءة النصوص."}
+    ]));
+
+    let currentUploadedFileData = "";
+    let currentUploadedFileName = "";
+
+    function handleFileLocalUpload(event) {
+        const file = event.target.files[0];
+        if(!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            currentUploadedFileData = e.target.result;
+            currentUploadedFileName = file.name;
+            document.getElementById('fileNameDisplay').innerText = "تم اختيار الملف: " + file.name;
+        };
+        reader.readAsDataURL(file);
     }
-    renderDashboard(unitsS3, 'gridS3');
-    renderDashboard(unitsS4, 'gridS4');
 
-    function openModal(id, gridId) {
-        const units = gridId === 'gridS3' ? unitsS3 : unitsS4;
-        const u = units.find(item => item.id === id);
-        if(!u) return;
-        document.getElementById('modalTitle').innerText = u.title + " - تفاصيل موسعة";
-        document.getElementById('modalGoal').innerText = "🎯 الهدف: " + u.desc;
-        document.getElementById('modalTools').innerText = u.tools;
-        document.getElementById('modalSteps').innerHTML = u.steps.map(s => `<li>• ${s}</li>`).join('');
-        document.getElementById('modalPedagogy').innerText = u.pedagogy;
-        document.getElementById('modalAi').innerHTML = `<strong>🤖 ذكاء اصطناعي:</strong> ${u.ai}`;
-        document.getElementById('projectModal').style.display = 'flex';
+    function addMawarid() {
+        const title = document.getElementById('mawaridTitle').value.trim();
+        const type = document.getElementById('mawaridType').value;
+        const link = document.getElementById('mawaridLink').value.trim();
+        const icon = document.getElementById('mawaridIcon').value.trim() || "📁";
+        const desc = document.getElementById('mawaridDesc').value.trim();
+
+        if(!title) { alert("الرجاء إدخال عنوان المورد على الأقل."); return; }
+
+        const newM = {
+            id: Date.now(),
+            title: title,
+            type: type,
+            link: link || "#",
+            fileData: currentUploadedFileData,
+            fileName: currentUploadedFileName,
+            icon: icon,
+            desc: desc || "مورد رقمي بيداغوجي."
+        };
+
+        mawaridList.unshift(newM);
+        localStorage.setItem('mawaridList', JSON.stringify(mawaridList));
+
+        document.getElementById('mawaridTitle').value = "";
+        document.getElementById('mawaridLink').value = "";
+        document.getElementById('mawaridIcon').value = "";
+        document.getElementById('mawaridDesc').value = "";
+        document.getElementById('mawaridFileInput').value = "";
+        document.getElementById('fileNameDisplay').innerText = "";
+        currentUploadedFileData = "";
+        currentUploadedFileName = "";
+
+        renderMawarid();
+        alert("تم حفظ المورد بنجاح في التخزين المحلي (Local Storage)!");
     }
-    function closeModal() { document.getElementById('projectModal').style.display = 'none'; }
 
-    let isAdmin = sessionStorage.getItem('alhalfawi_admin_logged') === 'true';
-    let studentsData = [
-        {name: "أحمد بن محمد الجلاصي", level: "السنة الثالثة", m1: 15, m2: 14, m3: 16, m4: 15},
-        {name: "مريم بنت علي الطرابلسي", level: "السنة الرابعة", m1: 17, m2: 16, m3: 18, m4: 17},
-        {name: "يوسف بن صالح العبيدي", level: "السنة الثالثة", m1: 13, m2: 12, m3: 14, m4: 13},
-        {name: "فاطمة بنت الهادي بن عمار", level: "السنة الرابعة", m1: 18, m2: 17, m3: 19, m4: 18}
-    ];
-    let commentsData = [
-        {author: "ولي تلميذ (السنة الثالثة)", text: "مبادرة ممتازة جداً يا معلم جمال، دمج التكنولوجيا يرفع من استيعاب أبنائنا.", date: "29 سبتمبر 2026", classe:"السنة الثالثة"},
-        {author: "أحمد (زائر)", text: "منظومة رقمية رائعة ومبهرة، بالتوفيق لمدرسة الحلفاوي.", date: "29 سبتمبر 2026", classe:"عام"}
-    ];
+    function deleteMawarid(id) {
+        if(!isAdmin) { alert("هذه الصلاحية للمشرف فقط."); return; }
+        if(confirm("هل أنت متكد من حذف هذا المورد؟")) {
+            mawaridList = mawaridList.filter(m => m.id !== id);
+            localStorage.setItem('mawaridList', JSON.stringify(mawaridList));
+            renderMawarid();
+        }
+    }
 
-    if(isAdmin) {
-        window.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('adminLoginBtn').innerText = "🔓 المشرف متصل";
-            document.getElementById('adminLoginBtn').classList.add('logged-in');
-            document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
+    function renderMawarid() {
+        const filter = document.getElementById('mawaridFilter').value;
+        const grid = document.getElementById('mawaridGrid');
+        grid.innerHTML = "";
+
+        const filtered = filter ? mawaridList.filter(m => m.type === filter) : mawaridList;
+        document.getElementById('mawaridCountBadge').innerText = mawaridList.length;
+
+        if(filtered.length === 0) {
+            grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:#64748b; padding:20px;">لا توجد موارد في هذا التصنيف حالياً.</p>`;
+            return;
+        }
+
+        filtered.forEach(m => {
+            let actionHtml = '';
+            if(m.fileData) {
+                actionHtml = `<a class="action-btn" style="display:inline-block; text-decoration:none; text-align:center; background:#059669; padding:6px 14px; font-size:0.85rem;" href="${m.fileData}" download="${m.fileName || 'document'}">📥 تحميل الملف المحلي</a>`;
+            } else if(m.link && m.link !== "#") {
+                actionHtml = `<a class="action-btn" style="display:inline-block; text-decoration:none; text-align:center; padding:6px 14px; font-size:0.85rem;" href="${m.link}" target="_blank">🌐 زيارة الرابط</a>`;
+            } else {
+                actionHtml = `<span style="font-size:0.8rem; color:#94a3b8;">(مورد مرجعي)</span>`;
+            }
+
+            let deleteBtnHtml = isAdmin ? `<button class="delete-btn" style="margin-top:8px;" onclick="deleteMawarid(${m.id})">حذف</button>` : '';
+
+            const card = document.createElement('div');
+            card.className = "unit-card";
+            card.style.borderTopColor = "#f59e0b";
+            card.innerHTML = `
+                <div class="unit-badge" style="background:#f59e0b;">${m.type}</div>
+                <div style="font-size:1.8rem; margin-bottom:8px;">${m.icon}</div>
+                <h3>${m.title}</h3>
+                <p class="unit-desc">${m.desc}</p>
+                ${m.fileName ? `<p style="font-size:0.75rem; color:#059669; margin-bottom:8px;">📎 ملف مرفق: ${m.fileName}</p>` : ''}
+                <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:10px;">
+                    ${actionHtml}
+                    ${deleteBtnHtml}
+                </div>
+            `;
+            grid.appendChild(card);
         });
     }
 
-    function loadStudents() {
-        const saved = localStorage.getItem('alhalfawi_cloud_sync_v2');
-        if(saved) { try { studentsData = JSON.parse(saved); } catch(e) {} }
-        renderEvalTable();
-    }
-    function saveStudents() {
-        localStorage.setItem('alhalfawi_cloud_sync_v2', JSON.stringify(studentsData));
-        renderEvalTable();
-    }
-    function loadComments() {
-        const saved = localStorage.getItem('alhalfawi_comments_sync_v2');
-        if(saved) { try { commentsData = JSON.parse(saved); } catch(e) {} }
-        renderComments();
-    }
-    function saveComments() {
-        localStorage.setItem('alhalfawi_comments_sync_v2', JSON.stringify(commentsData));
-        renderComments();
+    function exportMawaridCSV() {
+        let csv = "ID,Title,Type,Link,FileName,Description\n";
+        mawaridList.forEach(m => {
+            csv += `"${m.id}","${m.title}","${m.type}","${m.link}","${m.fileName || ''}","${m.desc}"\n`;
+        });
+        const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "Mawarid_Bank_Hfaoui.csv";
+        a.click();
     }
 
-    function toggleAdminLogin() {
-        if(!isAdmin) {
-            const pass = prompt("أدخل كلمة مرور المشرف:");
-            if(pass === "admin123") {
-                isAdmin = true;
-                sessionStorage.setItem('alhalfawi_admin_logged', 'true');
-                document.getElementById('adminLoginBtn').innerText = "🔓 المشرف متصل";
-                document.getElementById('adminLoginBtn').classList.add('logged-in');
-                document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'flex');
-                document.querySelectorAll('.admin-only').forEach(el => { if(el.tagName!=='DIV') el.style.display = 'table-cell'; });
-                renderComments(); renderEvalTable();
-                alert("مرحبا مشرف! تم تفعيل الصلاحيات.");
-            } else if(pass !== null) alert("كلمة المرور خطأ!");
-        } else {
-            isAdmin = false;
-            sessionStorage.removeItem('alhalfawi_admin_logged');
-            document.getElementById('adminLoginBtn').innerText = "🔐 دخول المشرف";
-            document.getElementById('adminLoginBtn').classList.remove('logged-in');
-            document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
-            renderComments(); renderEvalTable();
-        }
-    }
-
-    function updateStudentDropdown() {
-        const select = document.getElementById('st-name-select');
-        if(!select) return;
-        select.innerHTML = '<option value="">-- اختر لتعديله --</option>' + studentsData.map(st => `<option value="${st.name}">${st.name} (${st.level})</option>`).join('');
-    }
-    document.getElementById('st-name-select')?.addEventListener('change', function() {
-        const st = studentsData.find(s => s.name === this.value);
-        if(st) {
-            document.getElementById('st-new-name').value = st.name;
-            document.getElementById('st-level').value = st.level;
-            document.getElementById('st-m1').value = st.m1;
-            document.getElementById('st-m2').value = st.m2;
-            document.getElementById('st-m3').value = st.m3;
-            document.getElementById('st-m4').value = st.m4;
-        }
-    });
+    let studentsEval = JSON.parse(localStorage.getItem('studentsEval') || JSON.stringify([
+        {id:1, name: "أمير بن صالح", level: "السنة الثالثة", m1: 16, m2: 15, m3: 17, m4: 16},
+        {id:2, name: "مريم الجوادي", level: "السنة الثالثة", m1: 18, m2: 17, m3: 19, m4: 18},
+        {id:3, name: "يوسف الطرابلسي", level: "السنة الرابعة", m1: 14, m2: 13, m3: 15, m4: 14},
+        {id:4, name: "فاطمة الزهراء", level: "السنة الرابعة", m1: 19, m2: 18, m3: 20, m4: 19}
+    ]));
 
     function renderEvalTable() {
         const tbody = document.getElementById('evalTableBody');
-        if(!tbody) return;
-        tbody.innerHTML = studentsData.map((st, index) => {
-            const avg = ((st.m1 + st.m2 + st.m3 + st.m4) / 4).toFixed(2);
-            let status = avg >= 14 ? 'ممتاز' : (avg >= 10 ? 'في طور التملك' : 'يحتاج دعم');
-            let color = avg >= 14 ? '#059669' : (avg >= 10 ? '#d97706' : '#dc2626');
-            return `<tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 10px;"><strong>${st.name}</strong></td><td>${st.level}</td><td>${st.m1}</td><td>${st.m2}</td><td>${st.m3}</td><td>${st.m4}</td><td><strong style="color:var(--primary);">${avg}</strong></td><td><span style="color: ${color}; font-weight: bold;">${status}</span></td><td class="admin-only" style="display: ${isAdmin ? 'table-cell' : 'none'};"><button class="delete-btn" onclick="deleteStudent(${index})">حذف</button></td></tr>`;
-        }).join('');
-        updateStudentDropdown();
+        const select = document.getElementById('st-name-select');
+        tbody.innerHTML = "";
+        select.innerHTML = '<option value="">-- اختر لتعديله --</option>';
+
+        studentsEval.forEach((st, idx) => {
+            const avg = ((st.m1 + st.m2 + st.m3 + st.m4) / 4).toFixed(1);
+            let status = avg >= 15 ? "ممتاز 🌟" : (avg >= 10 ? "متوسط 👍" : "يحتاج دعم ⚠️");
+            let badgeColor = avg >= 15 ? "#059669" : (avg >= 10 ? "#d97706" : "#dc2626");
+
+            const tr = document.createElement('tr');
+            tr.style.borderBottom = "1px solid #e2e8f0";
+            tr.innerHTML = `
+                <td style="padding:10px; font-weight:bold;">${st.name}</td>
+                <td>${st.level}</td>
+                <td>${st.m1}</td>
+                <td>${st.m2}</td>
+                <td>${st.m3}</td>
+                <td>${st.m4}</td>
+                <td style="font-weight:bold; color:var(--primary);">${avg}</td>
+                <td><span style="background:${badgeColor}; color:#fff; padding:3px 8px; border-radius:12px; font-size:0.75rem;">${status}</span></td>
+                <td class="admin-only"><button class="delete-btn" onclick="deleteStudent(${st.id})">حذف</button></td>
+            `;
+            tbody.appendChild(tr);
+
+            const opt = document.createElement('option');
+            opt.value = st.id;
+            opt.innerText = st.name + " (" + st.level + ")";
+            select.appendChild(opt);
+        });
+        updateAdminVisibility();
     }
-    loadStudents();
-
-    function renderComments() {
-        const container = document.getElementById('commentsListContainer');
-        if(!container) return;
-        container.innerHTML = commentsData.map((c, idx) => `
-            <div class="comment-item">
-                <div class="comment-header"><span class="comment-author">👤 ${c.author} <span style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:8px; font-size:0.75rem;">${c.classe||'عام'}</span></span><span>${c.date}</span></div>
-                <p style="font-size: 0.92rem; color: var(--text-dark); line-height:1.6">${c.text}</p>
-                ${isAdmin ? `<button class="delete-btn" style="margin-top: 8px;" onclick="deleteComment(${idx})">حذف</button>` : ''}
-            </div>
-        `).join('');
-        document.getElementById('commentsCountBadge').innerText = commentsData.length;
-        document.getElementById('visitorCommentCount').innerText = commentsData.length;
-    }
-    loadComments();
-
-    async function addNewComment() {
-        const authorInput = document.getElementById('commentName');
-        const textInput = document.getElementById('commentText');
-        const classeInput = document.getElementById('commentClasse');
-        const author = authorInput.value.trim() || "زائر مجهول";
-        const text = textInput.value.trim();
-        const classe = classeInput.value;
-        if(!text) return alert('يرجى كتابة التعليق أولا!');
-
-        const dateNow = new Date().toLocaleDateString('ar-TN', { year: 'numeric', month: 'long', day: 'numeric' });
-        const newComment = {author, text, date: dateNow, classe};
-
-        commentsData.unshift(newComment);
-        saveComments();
-
-        if(GOOGLE_SHEET_WEBHOOK_URL && GOOGLE_SHEET_WEBHOOK_URL.startsWith('http')) {
-            try {
-                await fetch(GOOGLE_SHEET_WEBHOOK_URL, {method:'POST', mode:'no-cors', body: JSON.stringify(newComment)});
-            } catch(e) { console.log('Webhook error', e); }
-        }
-
-        authorInput.value = ''; textInput.value = '';
-        alert('✅ شكرا! تم نشر تعليقك. سيظهر لجميع الزوار على هذا الجهاز، ولجعله يظهر للجميع على الانترنت اربطه بـ Google Sheet كما في الدليل.');
-    }
-
-    function deleteComment(index) {
-        if(!isAdmin) return alert('للأدمين فقط!');
-        if(confirm("حذف هذا التعليق؟")) { commentsData.splice(index, 1); saveComments(); }
-    }
-    function clearAllComments() {
-        if(!isAdmin) return;
-        if(confirm("هل أنت متأكد من مسح كل التعليقات؟")) { commentsData = []; saveComments(); }
-    }
-
-    function exportCommentsCSV() {
-        let csv = "التاريخ,الاسم,القسم,التعليق\n" + commentsData.map(c => `"${c.date}","${c.author}","${c.classe}","${c.text.replace(/"/g,'""')}"`).join("\n");
-        let blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
-        let link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'تعليقات_الحلفاوي.csv'; link.click();
-    }
-    function exportStudentsCSV() {
-        let csv = "الاسم,المستوى,مع1,مع2,مع3,مع4,المعدل\n" + studentsData.map(s => {
-            let avg = ((s.m1+s.m2+s.m3+s.m4)/4).toFixed(2);
-            return `"${s.name}","${s.level}",${s.m1},${s.m2},${s.m3},${s.m4},${avg}`;
-        }).join("\n");
-        let blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
-        let link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'تلاميذ_الحلفاوي.csv'; link.click();
-    }
-
-
-    // ===== باب الموارد الجديد - بدون المساس بالأصل =====
-    let mawaridData=JSON.parse(localStorage.getItem('alhalfawi_mawarid_v2_CORRECTED')||'[{"title":"ChatGPT للتعليم","type":"ذكاء اصطناعي","desc":"مساعد ذكي لتحضير الدروس والتمارين - مجاني للمعلمين","link":"https://chat.openai.com","icon":"🤖"},{"title":"Canva للتعليم","type":"تطبيق","desc":"تصميم بطاقات وملصقات تعليمية مجانا للمعلمين","link":"https://www.canva.com/education/","icon":"🎨"},{"title":"Kahoot - مسابقات تفاعلية","type":"لعبة","desc":"ألعاب ومسابقات تفاعلية داخل القسم","link":"https://kahoot.com","icon":"🎮"},{"title":"كتب الوزارة الرسمية","type":"كتاب","desc":"تحميل كتب التلميذ ودليل المعلم PDF","link":"","icon":"📚"}]');
-    function saveMawarid(){localStorage.setItem('alhalfawi_mawarid_v2_CORRECTED',JSON.stringify(mawaridData));renderMawarid();}
-    function renderMawarid(){
-        const grid=document.getElementById('mawaridGrid');if(!grid)return;
-        const f=document.getElementById('mawaridFilter')?.value||'';
-        let filtered=mawaridData.filter(m=>!f||m.type===f);
-        grid.innerHTML=filtered.map((m)=>{
-            const idx=mawaridData.indexOf(m);
-            return `<div class="unit-card" style="border-top-color:#f59e0b;">
-                <div style="font-size:2.2rem;margin-bottom:8px;">${m.icon||'💾'}</div>
-                <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:10px;font-size:0.75rem;">${m.type}</span>
-                <h3 style="margin-top:8px;color:#78350f;">${m.title}</h3>
-                <p style="font-size:0.85rem;color:#334155;margin-top:6px;line-height:1.5;">${m.desc}</p>
-                <div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;">
-                    ${m.link?`<a href="${m.link}" target="_blank" class="action-btn" style="background:#f59e0b;text-decoration:none;display:inline-block;">🚀 فتح المورد</a>`:''}
-                    ${isAdmin?`<button class="delete-btn" onclick="deleteMawarid(${idx})">حذف</button>`:''}
-                </div>
-            </div>`;
-        }).join('');
-        const b=document.getElementById('mawaridCountBadge');if(b)b.innerText=mawaridData.length;
-    }
-    function addMawarid(){
-        if(!isAdmin)return alert('للأدمين فقط!');
-        const title=document.getElementById('mawaridTitle').value.trim();
-        const type=document.getElementById('mawaridType').value;
-        const link=document.getElementById('mawaridLink').value.trim();
-        const icon=document.getElementById('mawaridIcon').value.trim()||'💾';
-        const desc=document.getElementById('mawaridDesc').value.trim();
-        if(!title)return alert('أدخل اسم المورد');
-        mawaridData.unshift({title,type,link,icon,desc});
-        saveMawarid();
-        document.getElementById('mawaridTitle').value='';document.getElementById('mawaridLink').value='';document.getElementById('mawaridDesc').value='';document.getElementById('mawaridIcon').value='';
-        alert('✅ تمت إضافة المورد');
-    }
-    function deleteMawarid(idx){if(!isAdmin)return;if(confirm('حذف هذا المورد؟')){mawaridData.splice(idx,1);saveMawarid();}}
-    function exportMawaridCSV(){let csv="اسم المورد,النوع,الوصف,الرابط\n"+mawaridData.map(m=>`"${m.title}","${m.type}","${m.desc.replace(/"/g,'""')}","${m.link}"`).join("\n");let blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='موارد_الحلفاوي.csv';a.click();}
-    
-    // Fix admin toggle to show mawared panel too
-    const originalToggle = window.toggleAdminLogin;
-    // render initially
-    setTimeout(renderMawarid, 500);
-
-    
-    function initVisitorCounter() {
-        let visits = localStorage.getItem('alhalfawi_visitor_count_v2');
-        if (!visits) visits = 1245;
-        else {
-            visits = parseInt(visits);
-            if (!sessionStorage.getItem('counted_this_session')) {
-                visits += 1;
-                sessionStorage.setItem('counted_this_session', 'true');
-            }
-        }
-        localStorage.setItem('alhalfawi_visitor_count_v2', visits);
-        document.getElementById('visitorCount').innerText = visits.toLocaleString('ar-TN');
-    }
-    initVisitorCounter();
 
     function addStudentEval() {
-        if(!isAdmin) return alert('للأدمين فقط!');
-        const selectName = document.getElementById('st-name-select').value;
-        const customName = document.getElementById('st-new-name').value.trim();
-        const name = customName || selectName;
+        if(!isAdmin) { alert("صلاحية للمشرف فقط"); return; }
+        const selectId = document.getElementById('st-name-select').value;
+        const newNameInput = document.getElementById('st-new-name').value.trim();
         const level = document.getElementById('st-level').value;
         const m1 = parseFloat(document.getElementById('st-m1').value) || 0;
         const m2 = parseFloat(document.getElementById('st-m2').value) || 0;
         const m3 = parseFloat(document.getElementById('st-m3').value) || 0;
         const m4 = parseFloat(document.getElementById('st-m4').value) || 0;
-        if(!name) return alert('يرجى إدخال الاسم');
-        const idx = studentsData.findIndex(s => s.name === name);
-        if(idx >= 0) studentsData[idx] = {name, level, m1, m2, m3, m4};
-        else studentsData.push({name, level, m1, m2, m3, m4});
-        saveStudents();
-        document.getElementById('st-new-name').value = ''; document.getElementById('st-name-select').value = '';
-        document.getElementById('st-m1').value = ''; document.getElementById('st-m2').value = ''; document.getElementById('st-m3').value = ''; document.getElementById('st-m4').value = '';
-        alert('تم الحفظ!');
-    }
-    function deleteStudent(index) {
-        if(!isAdmin) return alert('للأدمين فقط!');
-        if(confirm("حذف التلميذ؟")) { studentsData.splice(index, 1); saveStudents(); }
-    }
-    function changeLang(lang) {
-        if(lang === 'fr') {
-            document.getElementById('hdrTitle').innerText = "Système Numérique Intelligent - École El Halfawi";
-            document.getElementById('hdrSub').innerText = "Délégation Médenine | Enseignant: Jamel Jouili";
-        } else if(lang === 'en') {
-            document.getElementById('hdrTitle').innerText = "Smart Digital System - El Halfawi School";
-            document.getElementById('hdrSub').innerText = "Regional Directorate Medenine | Teacher: Jamel Jouili";
+
+        if(selectId) {
+            const st = studentsEval.find(s => s.id == selectId);
+            if(st) {
+                if(newNameInput) st.name = newNameInput;
+                st.level = level;
+                st.m1 = m1; st.m2 = m2; st.m3 = m3; st.m4 = m4;
+            }
         } else {
-            document.getElementById('hdrTitle').innerText = "المنظومة الرقمية التفاعلية الذكية - مدرسة الحلفاوي";
-            document.getElementById('hdrSub').innerText = "المندوبية الجهوية للتربية بمدنين | إشراف المعلم: جمال الجويلي | منصة التخطيط الذكي والمشاريع المبتكرة";
+            if(!newNameInput) { alert("الرجاء إدخال اسم التلميذ الجديد."); return; }
+            studentsEval.push({ id: Date.now(), name: newNameInput, level: level, m1: m1, m2: m2, m3: m3, m4: m4 });
+        }
+
+        localStorage.setItem('studentsEval', JSON.stringify(studentsEval));
+        document.getElementById('st-new-name').value = "";
+        document.getElementById('st-m1').value = "";
+        document.getElementById('st-m2').value = "";
+        document.getElementById('st-m3').value = "";
+        document.getElementById('st-m4').value = "";
+        document.getElementById('st-name-select').value = "";
+        renderEvalTable();
+        alert("تم الحفظ بنجاح!");
+    }
+
+    function deleteStudent(id) {
+        if(!isAdmin) return;
+        studentsEval = studentsEval.filter(s => s.id !== id);
+        localStorage.setItem('studentsEval', JSON.stringify(studentsEval));
+        renderEvalTable();
+    }
+
+    function exportStudentsCSV() {
+        let csv = "ID,Name,Level,M1,M2,M3,M4\n";
+        studentsEval.forEach(s => {
+            csv += `"${s.id}","${s.name}","${s.level}",${s.m1},${s.m2},${s.m3},${s.m4}\n`;
+        });
+        const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "Students_Eval_Hfaoui.csv";
+        a.click();
+    }
+
+    let commentsList = JSON.parse(localStorage.getItem('commentsList') || JSON.stringify([
+        {id: 1, name: "ولي تلميذ بالسنّة الثالثة", classe: "ولي أمر", text: "شكرا جزيلا للمعلم جمال الجويلي على هذه المنظومة الرائعة والمفيدة جدا لأبنائنا.", date: "28 سبتمبر 2026"},
+        {id: 2, name: "أحمد بن محمد", classe: "زميل مربي", text: "مبادرة ممتازة وتستحق كل التشجيع والتثمين.", date: "29 سبتمبر 2026"}
+    ]));
+
+    function renderComments() {
+        const container = document.getElementById('commentsListContainer');
+        container.innerHTML = "";
+        document.getElementById('commentsCountBadge').innerText = commentsList.length;
+        document.getElementById('visitorCommentCount').innerText = commentsList.length;
+
+        commentsList.forEach(c => {
+            const div = document.createElement('div');
+            div.className = "comment-item";
+            div.innerHTML = `
+                <div class="comment-header">
+                    <span class="comment-author">${c.name} <span style="font-weight:normal; color:#64748b;">(${c.classe})</span></span>
+                    <span>${c.date}</span>
+                </div>
+                <p style="font-size:0.9rem; color:#334155; line-height:1.6;">${c.text}</p>
+                ${isAdmin ? `<button class="delete-btn" style="margin-top:6px; padding:2px 8px; font-size:0.75rem;" onclick="deleteComment(${c.id})">حذف</button>` : ''}
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    function addNewComment() {
+        const name = document.getElementById('commentName').value.trim();
+        const classe = document.getElementById('commentClasse').value;
+        const text = document.getElementById('commentText').value.trim();
+
+        if(!name || !text) { alert("الرجاء إدخال الاسم ومحتوى التعليق."); return; }
+
+        const newC = {
+            id: Date.now(),
+            name: name,
+            classe: classe,
+            text: text,
+            date: new Date().toLocaleDateString('ar-TN', {year:'numeric', month:'long', day:'numeric'})
+        };
+
+        commentsList.unshift(newC);
+        localStorage.setItem('commentsList', JSON.stringify(commentsList));
+        document.getElementById('commentName').value = "";
+        document.getElementById('commentText').value = "";
+        renderComments();
+        alert("تم نشر تعليقك بنجاح وشكرا لمساهمتك!");
+    }
+
+    function deleteComment(id) {
+        if(!isAdmin) return;
+        commentsList = commentsList.filter(c => c.id !== id);
+        localStorage.setItem('commentsList', JSON.stringify(commentsList));
+        renderComments();
+    }
+
+    function clearAllComments() {
+        if(!isAdmin) return;
+        if(confirm("هل أنت متأكد من مسح جميع التعليقات؟")) {
+            commentsList = [];
+            localStorage.setItem('commentsList', JSON.stringify(commentsList));
+            renderComments();
         }
     }
+
+    function exportCommentsCSV() {
+        let csv = "ID,Name,Class,Text,Date\n";
+        commentsList.forEach(c => {
+            csv += `"${c.id}","${c.name}","${c.classe}","${c.text.replace(/"/g, '""')}","${c.date}"\n`;
+        });
+        const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "Comments_Hfaoui.csv";
+        a.click();
+    }
+
+    let isAdmin = localStorage.getItem('isAdminHfaoui') === 'true';
+
+    function toggleAdminLogin() {
+        if(isAdmin) {
+            if(confirm("هل تريد تسجيل الخروج من وضع الإشراف؟")) {
+                isAdmin = false;
+                localStorage.setItem('isAdminHfaoui', 'false');
+                updateAdminVisibility();
+                alert("تم تسجيل الخروج بنجاح.");
+            }
+        } else {
+            const pass = prompt("أدخل كلمة مرور المشرف:");
+            if(pass === "jamel2026" || pass === "admin") {
+                isAdmin = true;
+                localStorage.setItem('isAdminHfaoui', 'true');
+                updateAdminVisibility();
+                alert("مرحباً بك أستاذ جمال الجويلي في لوحة التحكم الإشرافية!");
+            } else if(pass !== null) {
+                alert("كلمة المرور غير صحيحة.");
+            }
+        }
+    }
+
+    function updateAdminVisibility() {
+        const btn = document.getElementById('adminLoginBtn');
+        const adminElements = document.querySelectorAll('.admin-only');
+
+        if(isAdmin) {
+            btn.innerText = "🔓 خروج المشرف";
+            btn.classList.add('logged-in');
+            adminElements.forEach(el => el.style.display = 'block');
+        } else {
+            btn.innerText = "🔐 دخول المشرف";
+            btn.classList.remove('logged-in');
+            adminElements.forEach(el => el.style.display = 'none');
+        }
+        renderMawarid();
+        renderEvalTable();
+        renderComments();
+    }
+
     function generateDrawing() {
         const canvas = document.getElementById('digitalCanvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = 600; canvas.height = 320;
-        ctx.clearRect(0,0,600,320);
-        ctx.fillStyle = '#1e3a8a'; ctx.fillRect(25, 25, 550, 270);
-        ctx.fillStyle = '#fbbf24'; ctx.font = 'bold 20px Tajawal';
-        ctx.fillText('مدرسة الحلفاوي - منصة الذكاء الاصطناعي', 80, 140);
-        ctx.fillStyle = '#ffffff'; ctx.font = '14px Tajawal';
-        ctx.fillText('إشراف: جمال الجويلي - مشاريع رقمية مبتكرة', 120, 185);
+        const topic = document.getElementById('draw-topic').value;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if(topic === "1") {
+            ctx.fillStyle = "#059669"; ctx.fillRect(0, 240, 600, 80);
+            ctx.fillStyle = "#38bdf8"; ctx.fillRect(0, 0, 600, 240);
+            ctx.fillStyle = "#fbbf24"; ctx.beginPath(); ctx.arc(500, 60, 35, 0, Math.PI*2); ctx.fill();
+            ctx.fillStyle = "#92400e"; ctx.fillRect(280, 160, 25, 80);
+            ctx.fillStyle = "#15803d"; ctx.beginPath(); ctx.arc(292, 140, 45, 0, Math.PI*2); ctx.fill();
+        } else if(topic === "2") {
+            ctx.fillStyle = "#1e1b4b"; ctx.fillRect(0, 0, 600, 320);
+            ctx.fillStyle = "#fbbf24"; ctx.font = "bold 20px Tajawal"; ctx.fillText("📚 القصة الرقمية التفاعلية 3D", 50, 60);
+            ctx.fillStyle = "#38bdf8"; ctx.fillRect(50, 100, 500, 150);
+        } else {
+            ctx.fillStyle = "#1e3a8a"; ctx.fillRect(0, 0, 600, 320);
+            ctx.fillStyle = "#fff"; ctx.font = "bold 20px Tajawal"; ctx.fillText("🤖 المجسم الرقمي والذكاء الاصطناعي", 50, 60);
+            ctx.strokeStyle = "#38bdf8"; ctx.lineWidth = 3; ctx.strokeRect(100, 100, 400, 160);
+        }
     }
-    generateDrawing();
+
     function downloadCanvas() {
+        const canvas = document.getElementById('digitalCanvas');
         const link = document.createElement('a');
-        link.download = 'alhalfawi_drawing.png';
-        link.href = document.getElementById('digitalCanvas').toDataURL();
+        link.download = 'digital_drawing_hfaoui.png';
+        link.href = canvas.toDataURL();
         link.click();
     }
+
     function speakText() {
-        const text = document.getElementById('tts-text').value || "مرحبا بكم في منظومة الحلفاوي الذكية بمدنين تحت إشراف المعلم جمال الجويلي";
-        window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+        const text = document.getElementById('tts-text').value;
+        if(!text) { alert("الرجاء إدخال نص للقراءة."); return; }
+        if('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ar-SA';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("متصفحك لا يدعم خاصية تحويل النص إلى صوت.");
+        }
+    }
+
+    function initDashboards() {
+        const g3 = document.getElementById('gridS3');
+        const g4 = document.getElementById('gridS4');
+
+        unitsS3.forEach(u => {
+            const card = document.createElement('div');
+            card.className = "unit-card";
+            card.innerHTML = `
+                <div class="unit-badge">${u.time}</div>
+                <div class="unit-time">الوحدة رقم ${u.id}</div>
+                <h3>${u.title}</h3>
+                <p class="unit-desc">${u.desc}</p>
+                <div class="unit-features">${u.features.map(f => `<div>• ${f}</div>`).join('')}</div>
+                <div class="ai-project-box"><strong>🤖 مشروع الذكاء الاصطناعي:</strong>${u.project}</div>
+                <button class="card-footer-btn" onclick="openModal(${u.id}, 's3')">📋 تفاصيل المخطط والمراحل &larr;</button>
+            `;
+            g3.appendChild(card);
+        });
+
+        unitsS4.forEach(u => {
+            const card = document.createElement('div');
+            card.className = "unit-card";
+            card.innerHTML = `
+                <div class="unit-badge">${u.time}</div>
+                <div class="unit-time">الوحدة رقم ${u.id}</div>
+                <h3>${u.title}</h3>
+                <p class="unit-desc">${u.desc}</p>
+                <div class="unit-features">${u.features.map(f => `<div>• ${f}</div>`).join('')}</div>
+                <div class="ai-project-box"><strong>🤖 مشروع الذكاء الاصطناعي:</strong>${u.project}</div>
+                <button class="card-footer-btn" onclick="openModal(${u.id}, 's4')">📋 تفاصيل المخطط والمراحل &larr;</button>
+            `;
+            g4.appendChild(card);
+        });
+
+        renderMawarid();
+        renderEvalTable();
+        renderComments();
+        updateAdminVisibility();
+        generateDrawing();
+    }
+
+    function openModal(id, level) {
+        const list = level === 's3' ? unitsS3 : unitsS4;
+        const u = list.find(item => item.id === id);
+        if(!u) return;
+
+        document.getElementById('modalTitle').innerText = u.title;
+        document.getElementById('modalGoal').innerText = "الوصف: " + u.desc;
+        document.getElementById('modalTools').innerText = u.tools;
+        
+        const ul = document.getElementById('modalSteps');
+        ul.innerHTML = "";
+        u.steps.forEach(s => {
+            const li = document.createElement('li');
+            li.style.marginBottom = "6px";
+            li.innerHTML = `✔️ ${s}`;
+            ul.appendChild(li);
+        });
+
+        document.getElementById('modalPedagogy').innerText = u.pedagogy;
+        document.getElementById('modalAi').innerHTML = `<div style="background:#eff6ff; padding:10px; border-radius:8px; border:1px solid #bfdbfe; font-size:0.85rem; color:#1e40af;"><strong>Prompt AI:</strong> <code>${u.ai}</code></div>`;
+        document.getElementById('projectModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('projectModal').style.display = 'none';
+    }
+
+    window.onload = function() {
+        initDashboards();
     }
 </script>
 </body>
