@@ -240,7 +240,7 @@
                 </div>
                 <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
                     <label id="fileUploadLabel" style="font-size:0.85rem; font-weight:bold; color:#92400e;">اختر ملفاً من جهازك (سيتم حفظه في Local Storage):</label>
-                    <input type="file" id="mawaridFileInput" style="padding:5px; background:#fff; border-radius:8px; border:1px solid #cbd5e1; font-size:0.85rem;" onchange="handleFileLocalUpload(event)">
+                    <input type="file" id="mawaridFileInput" multiple accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.gif,.mp4,.mp3,.zip,.rar,.txt" style="padding:5px; background:#fff; border-radius:8px; border:1px solid #cbd5e1; font-size:0.85rem;" onchange="handleFileLocalUpload(event)">
                     <span id="fileNameDisplay" style="font-size:0.8rem; color:#059669; font-weight:bold;"></span>
                 </div>
                 <textarea id="mawaridDesc" placeholder="وصف المورد وفائدته التربوية..." style="width:100%;margin-top:10px;padding:9px;border-radius:8px;border:1px solid #cbd5e1;height:60px;"></textarea>
@@ -551,43 +551,98 @@
         {id: 3, title: "قصص الواقع المعزز التفاعلية", type: "فيديو", link: "#", fileData: "", fileName: "", icon: "🎬", desc: "فيديو توضيحي لكيفية دمج الواقع المعزز في قراءة النصوص."}
     ]));
 
-    let currentUploadedFileData = "";
-    let currentUploadedFileName = "";
+    // --- CORRIGÉ: support multi-fichiers ---
+    let currentUploadedFiles = []; // tableau {data, name, size}
 
     function handleFileLocalUpload(event) {
-        const file = event.target.files[0];
-        if(!file) return;
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            currentUploadedFileData = e.target.result;
-            currentUploadedFileName = file.name;
-            document.getElementById('fileNameDisplay').innerText = "تم اختيار الملف: " + file.name;
-        };
-        reader.readAsDataURL(file);
+        const files = Array.from(event.target.files || []);
+        if(files.length === 0) {
+            currentUploadedFiles = [];
+            document.getElementById('fileNameDisplay').innerText = "";
+            return;
+        }
+        const display = document.getElementById('fileNameDisplay');
+        display.innerText = `⏳ جاري قراءة ${files.length} ملف(ات)...`;
+
+        const promises = files.map(file => {
+            return new Promise((resolve, reject) => {
+                if(file.size > 8 * 1024 * 1024) {
+                    reject(`الملف ${file.name} كبير جدا (>8MB). خفّض الحجم أو استعمل ملفات أصغر.`);
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = e => resolve({data: e.target.result, name: file.name, size: file.size});
+                reader.onerror = () => reject(`خطأ قراءة ${file.name}`);
+                reader.readAsDataURL(file);
+            });
+        });
+
+        Promise.all(promises).then(results => {
+            currentUploadedFiles = results;
+            const names = results.map(r => r.name).join('، ');
+            display.innerText = `✅ تم اختيار ${results.length} ملف: ${names}`;
+        }).catch(err => {
+            alert(err);
+            currentUploadedFiles = [];
+            display.innerText = "";
+            document.getElementById('mawaridFileInput').value = "";
+        });
     }
 
     function addMawarid() {
-        const title = document.getElementById('mawaridTitle').value.trim();
+        const titleInput = document.getElementById('mawaridTitle').value.trim();
         const type = document.getElementById('mawaridType').value;
         const link = document.getElementById('mawaridLink').value.trim();
         const icon = document.getElementById('mawaridIcon').value.trim() || "📁";
         const desc = document.getElementById('mawaridDesc').value.trim();
 
-        if(!title) { alert("الرجاء إدخال عنوان المورد على الأقل."); return; }
+        if(!titleInput && currentUploadedFiles.length === 0 && !link) {
+            alert("الرجاء إدخال عنوان المورد أو اختيار ملف أو رابط.");
+            return;
+        }
 
-        const newM = {
-            id: Date.now(),
-            title: title,
-            type: type,
-            link: link || "#",
-            fileData: currentUploadedFileData,
-            fileName: currentUploadedFileName,
-            icon: icon,
-            desc: desc || "مورد رقمي بيداغوجي."
-        };
+        let newEntries = [];
 
-        mawaridList.unshift(newM);
-        localStorage.setItem('mawaridList', JSON.stringify(mawaridList));
+        if(currentUploadedFiles.length > 0) {
+            // Une entrée par fichier
+            currentUploadedFiles.forEach((f, idx) => {
+                const t = titleInput 
+                    ? (currentUploadedFiles.length > 1 ? `${titleInput} (${idx+1})` : titleInput)
+                    : f.name.replace(/\.[^/.]+$/, "");
+                newEntries.push({
+                    id: Date.now() + idx,
+                    title: t,
+                    type: type,
+                    link: link || "#",
+                    fileData: f.data,
+                    fileName: f.name,
+                    icon: icon,
+                    desc: desc || "مورد رقمي بيداغوجي."
+                });
+            });
+        } else {
+            if(!titleInput) { alert("الرجاء إدخال عنوان المورد على الأقل."); return; }
+            newEntries.push({
+                id: Date.now(),
+                title: titleInput,
+                type: type,
+                link: link || "#",
+                fileData: "",
+                fileName: "",
+                icon: icon,
+                desc: desc || "مورد رقمي بيداغوجي."
+            });
+        }
+
+        try {
+            mawaridList = [...newEntries, ...mawaridList];
+            localStorage.setItem('mawaridList', JSON.stringify(mawaridList));
+        } catch(e) {
+            // QuotaExceededError - localStorage plein (~5MB)
+            mawaridList = mawaridList.slice(newEntries.length);
+            alert("⚠️ التخزين المحلي ممتلئ! localStorage محدود ~5-10MB. احذف موارد قديمة أو استعمل ملفات أصغر. الخطأ: " + e.message);
+            return;
+        }
 
         document.getElementById('mawaridTitle').value = "";
         document.getElementById('mawaridLink').value = "";
@@ -595,11 +650,10 @@
         document.getElementById('mawaridDesc').value = "";
         document.getElementById('mawaridFileInput').value = "";
         document.getElementById('fileNameDisplay').innerText = "";
-        currentUploadedFileData = "";
-        currentUploadedFileName = "";
+        currentUploadedFiles = [];
 
         renderMawarid();
-        alert("تم حفظ المورد بنجاح في التخزين المحلي (Local Storage)!");
+        alert(`✅ تم حفظ ${newEntries.length} مورد بنجاح في التخزين المحلي!`);
     }
 
     function deleteMawarid(id) {
